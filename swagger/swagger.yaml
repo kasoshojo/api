@@ -1,0 +1,1310 @@
+consumes:
+- application/json
+definitions:
+  AddcodeUsersPayload:
+    example:
+      code: Laborum quaerat rerum sit.
+    properties:
+      code:
+        example: Laborum quaerat rerum sit.
+        type: string
+    required:
+    - code
+    title: AddcodeUsersPayload
+    type: object
+  ForgotpasswordUsersPayload:
+    example:
+      securityanswer: Harum dolorem.
+      securityquestion: Non laboriosam dicta distinctio quisquam.
+      username: Et omnis deserunt animi optio officiis.
+    properties:
+      securityanswer:
+        example: Harum dolorem.
+        type: string
+      securityquestion:
+        example: Non laboriosam dicta distinctio quisquam.
+        type: string
+      username:
+        description: Username
+        example: Et omnis deserunt animi optio officiis.
+        type: string
+    required:
+    - username
+    - securityquestion
+    - securityanswer
+    title: ForgotpasswordUsersPayload
+    type: object
+  GoaMessage:
+    description: A message item (default view)
+    example:
+      body: Qui non aut in eum.
+      created_at: 1973-06-28T15:55:33+09:00
+      date: 1983-05-14T01:49:52+09:00
+      id: 9.719804e+17
+      read: false
+      title: Qui molestiae laborum.
+      updated_at: 2007-05-02T17:24:47+09:00
+    properties:
+      body:
+        description: Body
+        example: Qui non aut in eum.
+        type: string
+      created_at:
+        description: Record created timestamp
+        example: 1973-06-28T15:55:33+09:00
+        format: date-time
+        type: string
+      date:
+        description: Date posted
+        example: 1983-05-14T01:49:52+09:00
+        format: date-time
+        type: string
+      id:
+        description: Unique ID
+        example: 9.719804e+17
+        format: int64
+        type: integer
+      read:
+        description: User has read the message
+        example: false
+        type: boolean
+      title:
+        description: Title
+        example: Qui molestiae laborum.
+        type: string
+      updated_at:
+        description: Record updated timestamp
+        example: 2007-05-02T17:24:47+09:00
+        format: date-time
+        type: string
+    required:
+    - id
+    - title
+    - body
+    - date
+    - read
+    - created_at
+    title: 'Mediatype identifier: application/vnd.goa.message+json; view=default'
+    type: object
+  GoaMessageCollection:
+    description: GoaMessageCollection is the media type for an array of GoaMessage
+      (default view)
+    example:
+    - body: Qui non aut in eum.
+      created_at: 1973-06-28T15:55:33+09:00
+      date: 1983-05-14T01:49:52+09:00
+      id: 9.719804e+17
+      read: false
+      title: Qui molestiae laborum.
+      updated_at: 2007-05-02T17:24:47+09:00
+    items:
+      $ref: '#/definitions/GoaMessage'
+    title: 'Mediatype identifier: application/vnd.goa.message+json; type=collection;
+      view=default'
+    type: array
+  GoaNews:
+    description: A news item (default view)
+    example:
+      created_at: 2000-04-11T17:00:35+09:00
+      date: 1982-04-26T06:55:54+09:00
+      id: 8.716162e+16
+      image_url: Fugiat placeat possimus nihil aperiam.
+      title: Sit iure repellat qui.
+      updated_at: 2005-01-04T21:17:00+09:00
+      url: Soluta ipsa.
+    properties:
+      created_at:
+        description: Record created timestamp
+        example: 2000-04-11T17:00:35+09:00
+        format: date-time
+        type: string
+      date:
+        description: Date posted
+        example: 1982-04-26T06:55:54+09:00
+        format: date-time
+        type: string
+      id:
+        description: Unique ID
+        example: 8.716162e+16
+        format: int64
+        type: integer
+      image_url:
+        description: Image url
+        example: Fugiat placeat possimus nihil aperiam.
+        type: string
+      title:
+        description: Title
+        example: Sit iure repellat qui.
+        type: string
+      updated_at:
+        description: Record updated timestamp
+        example: 2005-01-04T21:17:00+09:00
+        format: date-time
+        type: string
+      url:
+        description: News url
+        example: Soluta ipsa.
+        type: string
+    required:
+    - id
+    - title
+    - image_url
+    - url
+    - date
+    - created_at
+    title: 'Mediatype identifier: application/vnd.goa.news+json; view=default'
+    type: object
+  GoaNewsCollection:
+    description: GoaNewsCollection is the media type for an array of GoaNews (default
+      view)
+    example:
+    - created_at: 2000-04-11T17:00:35+09:00
+      date: 1982-04-26T06:55:54+09:00
+      id: 8.716162e+16
+      image_url: Fugiat placeat possimus nihil aperiam.
+      title: Sit iure repellat qui.
+      updated_at: 2005-01-04T21:17:00+09:00
+      url: Soluta ipsa.
+    - created_at: 2000-04-11T17:00:35+09:00
+      date: 1982-04-26T06:55:54+09:00
+      id: 8.716162e+16
+      image_url: Fugiat placeat possimus nihil aperiam.
+      title: Sit iure repellat qui.
+      updated_at: 2005-01-04T21:17:00+09:00
+      url: Soluta ipsa.
+    items:
+      $ref: '#/definitions/GoaNews'
+    title: 'Mediatype identifier: application/vnd.goa.news+json; type=collection;
+      view=default'
+    type: array
+  GoaSurvey:
+    description: A survey (default view)
+    example:
+      author: Dolorem cumque.
+      created_at: 1983-11-13T15:23:15+09:00
+      end_date: 1978-07-17T18:27:00+09:00
+      id: 7.4388696e+18
+      image_url: Rerum omnis.
+      insertion_code: Explicabo tempora.
+      num_questions: 1.8104567e+18
+      questions:
+      - answers:
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        created_at: 1971-10-21T23:42:22+09:00
+        id: 6.2920824e+17
+        image_url: Ut tempora autem sunt doloremque quis.
+        index: 7.2394034e+18
+        num_answers: 8.9197315e+18
+        preselected_index: 4.815584e+18
+        text_en: Nisi iure quaerat dolores aut.
+        text_ja: Exercitationem a voluptatum.
+        updated_at: 1975-06-11T07:36:24+09:00
+        weighted: false
+      - answers:
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        created_at: 1971-10-21T23:42:22+09:00
+        id: 6.2920824e+17
+        image_url: Ut tempora autem sunt doloremque quis.
+        index: 7.2394034e+18
+        num_answers: 8.9197315e+18
+        preselected_index: 4.815584e+18
+        text_en: Nisi iure quaerat dolores aut.
+        text_ja: Exercitationem a voluptatum.
+        updated_at: 1975-06-11T07:36:24+09:00
+        weighted: false
+      reward_id: 4.4783125e+18
+      start_date: 1984-03-08T20:59:14+09:00
+      title_en: Molestias earum modi nemo.
+      title_ja: Est commodi maxime.
+      type: 6.2674466e+18
+      updated_at: 1988-06-04T18:12:59+09:00
+    properties:
+      author:
+        description: Author
+        example: Dolorem cumque.
+        type: string
+      created_at:
+        description: Record created timestamp
+        example: 1983-11-13T15:23:15+09:00
+        format: date-time
+        type: string
+      end_date:
+        description: End
+        example: 1978-07-17T18:27:00+09:00
+        format: date-time
+        type: string
+      id:
+        description: Unique ID
+        example: 7.4388696e+18
+        format: int64
+        type: integer
+      image_url:
+        description: image URL
+        example: Rerum omnis.
+        type: string
+      insertion_code:
+        description: Insertion code
+        example: Explicabo tempora.
+        type: string
+      num_questions:
+        description: Number of questions
+        example: 1.8104567e+18
+        format: int64
+        type: integer
+      questions:
+        description: Questions
+        example:
+        - answers:
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          created_at: 1971-10-21T23:42:22+09:00
+          id: 6.2920824e+17
+          image_url: Ut tempora autem sunt doloremque quis.
+          index: 7.2394034e+18
+          num_answers: 8.9197315e+18
+          preselected_index: 4.815584e+18
+          text_en: Nisi iure quaerat dolores aut.
+          text_ja: Exercitationem a voluptatum.
+          updated_at: 1975-06-11T07:36:24+09:00
+          weighted: false
+        - answers:
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          - created_at: 1975-06-01T15:25:24+09:00
+            id: 4.5164397e+18
+            image_url: Et rem et dolorem facilis harum eaque.
+            index: 8.277058e+18
+            open_answer: true
+            text_en: Est veritatis.
+            text_ja: Delectus omnis ab.
+            updated_at: 1983-11-05T06:02:54+09:00
+          created_at: 1971-10-21T23:42:22+09:00
+          id: 6.2920824e+17
+          image_url: Ut tempora autem sunt doloremque quis.
+          index: 7.2394034e+18
+          num_answers: 8.9197315e+18
+          preselected_index: 4.815584e+18
+          text_en: Nisi iure quaerat dolores aut.
+          text_ja: Exercitationem a voluptatum.
+          updated_at: 1975-06-11T07:36:24+09:00
+          weighted: false
+        items:
+          $ref: '#/definitions/GoaSurveyquestion'
+        type: array
+      reward_id:
+        description: Reward ID
+        example: 4.4783125e+18
+        format: int64
+        type: integer
+      start_date:
+        description: Start
+        example: 1984-03-08T20:59:14+09:00
+        format: date-time
+        type: string
+      title_en:
+        description: Title
+        example: Molestias earum modi nemo.
+        type: string
+      title_ja:
+        description: Title
+        example: Est commodi maxime.
+        type: string
+      type:
+        description: Survey type
+        example: 6.2674466e+18
+        format: int64
+        type: integer
+      updated_at:
+        description: Record updated timestamp
+        example: 1988-06-04T18:12:59+09:00
+        format: date-time
+        type: string
+    required:
+    - id
+    - type
+    - title_en
+    - title_ja
+    - image_url
+    - num_questions
+    - author
+    - insertion_code
+    - start_date
+    - end_date
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.goa.survey+json; view=default'
+    type: object
+  GoaSurveyCollection:
+    description: GoaSurveyCollection is the media type for an array of GoaSurvey (default
+      view)
+    example:
+    - author: Dolorem cumque.
+      created_at: 1983-11-13T15:23:15+09:00
+      end_date: 1978-07-17T18:27:00+09:00
+      id: 7.4388696e+18
+      image_url: Rerum omnis.
+      insertion_code: Explicabo tempora.
+      num_questions: 1.8104567e+18
+      questions:
+      - answers:
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        created_at: 1971-10-21T23:42:22+09:00
+        id: 6.2920824e+17
+        image_url: Ut tempora autem sunt doloremque quis.
+        index: 7.2394034e+18
+        num_answers: 8.9197315e+18
+        preselected_index: 4.815584e+18
+        text_en: Nisi iure quaerat dolores aut.
+        text_ja: Exercitationem a voluptatum.
+        updated_at: 1975-06-11T07:36:24+09:00
+        weighted: false
+      - answers:
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        created_at: 1971-10-21T23:42:22+09:00
+        id: 6.2920824e+17
+        image_url: Ut tempora autem sunt doloremque quis.
+        index: 7.2394034e+18
+        num_answers: 8.9197315e+18
+        preselected_index: 4.815584e+18
+        text_en: Nisi iure quaerat dolores aut.
+        text_ja: Exercitationem a voluptatum.
+        updated_at: 1975-06-11T07:36:24+09:00
+        weighted: false
+      reward_id: 4.4783125e+18
+      start_date: 1984-03-08T20:59:14+09:00
+      title_en: Molestias earum modi nemo.
+      title_ja: Est commodi maxime.
+      type: 6.2674466e+18
+      updated_at: 1988-06-04T18:12:59+09:00
+    items:
+      $ref: '#/definitions/GoaSurvey'
+    title: 'Mediatype identifier: application/vnd.goa.survey+json; type=collection;
+      view=default'
+    type: array
+  GoaSurveyanswer:
+    description: A survey answer (default view)
+    example:
+      created_at: 1975-06-01T15:25:24+09:00
+      id: 4.5164397e+18
+      image_url: Et rem et dolorem facilis harum eaque.
+      index: 8.277058e+18
+      open_answer: true
+      text_en: Est veritatis.
+      text_ja: Delectus omnis ab.
+      updated_at: 1983-11-05T06:02:54+09:00
+    properties:
+      created_at:
+        description: Record created timestamp
+        example: 1975-06-01T15:25:24+09:00
+        format: date-time
+        type: string
+      id:
+        description: Unique ID
+        example: 4.5164397e+18
+        format: int64
+        type: integer
+      image_url:
+        description: image URL
+        example: Et rem et dolorem facilis harum eaque.
+        type: string
+      index:
+        description: Index
+        example: 8.277058e+18
+        format: int64
+        type: integer
+      open_answer:
+        description: Open answer
+        example: true
+        type: boolean
+      text_en:
+        description: Text
+        example: Est veritatis.
+        type: string
+      text_ja:
+        description: Text
+        example: Delectus omnis ab.
+        type: string
+      updated_at:
+        description: Record updated timestamp
+        example: 1983-11-05T06:02:54+09:00
+        format: date-time
+        type: string
+    required:
+    - id
+    - text_en
+    - text_ja
+    - image_url
+    - index
+    - open_answer
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.goa.surveyanswer+json; view=default'
+    type: object
+  GoaSurveyquestion:
+    description: A survey question (default view)
+    example:
+      answers:
+      - created_at: 1975-06-01T15:25:24+09:00
+        id: 4.5164397e+18
+        image_url: Et rem et dolorem facilis harum eaque.
+        index: 8.277058e+18
+        open_answer: true
+        text_en: Est veritatis.
+        text_ja: Delectus omnis ab.
+        updated_at: 1983-11-05T06:02:54+09:00
+      - created_at: 1975-06-01T15:25:24+09:00
+        id: 4.5164397e+18
+        image_url: Et rem et dolorem facilis harum eaque.
+        index: 8.277058e+18
+        open_answer: true
+        text_en: Est veritatis.
+        text_ja: Delectus omnis ab.
+        updated_at: 1983-11-05T06:02:54+09:00
+      - created_at: 1975-06-01T15:25:24+09:00
+        id: 4.5164397e+18
+        image_url: Et rem et dolorem facilis harum eaque.
+        index: 8.277058e+18
+        open_answer: true
+        text_en: Est veritatis.
+        text_ja: Delectus omnis ab.
+        updated_at: 1983-11-05T06:02:54+09:00
+      created_at: 1971-10-21T23:42:22+09:00
+      id: 6.2920824e+17
+      image_url: Ut tempora autem sunt doloremque quis.
+      index: 7.2394034e+18
+      num_answers: 8.9197315e+18
+      preselected_index: 4.815584e+18
+      text_en: Nisi iure quaerat dolores aut.
+      text_ja: Exercitationem a voluptatum.
+      updated_at: 1975-06-11T07:36:24+09:00
+      weighted: false
+    properties:
+      answers:
+        description: Answers
+        example:
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1975-06-01T15:25:24+09:00
+          id: 4.5164397e+18
+          image_url: Et rem et dolorem facilis harum eaque.
+          index: 8.277058e+18
+          open_answer: true
+          text_en: Est veritatis.
+          text_ja: Delectus omnis ab.
+          updated_at: 1983-11-05T06:02:54+09:00
+        items:
+          $ref: '#/definitions/GoaSurveyanswer'
+        type: array
+      created_at:
+        description: Record created timestamp
+        example: 1971-10-21T23:42:22+09:00
+        format: date-time
+        type: string
+      id:
+        description: Unique ID
+        example: 6.2920824e+17
+        format: int64
+        type: integer
+      image_url:
+        description: image URL
+        example: Ut tempora autem sunt doloremque quis.
+        type: string
+      index:
+        description: Index
+        example: 7.2394034e+18
+        format: int64
+        type: integer
+      num_answers:
+        description: Number of answers
+        example: 8.9197315e+18
+        format: int64
+        type: integer
+      preselected_index:
+        description: Index of preselected answer
+        example: 4.815584e+18
+        format: int64
+        type: integer
+      text_en:
+        description: Text
+        example: Nisi iure quaerat dolores aut.
+        type: string
+      text_ja:
+        description: Text
+        example: Exercitationem a voluptatum.
+        type: string
+      updated_at:
+        description: Record updated timestamp
+        example: 1975-06-11T07:36:24+09:00
+        format: date-time
+        type: string
+      weighted:
+        description: Weighted
+        example: false
+        type: boolean
+    required:
+    - id
+    - text_en
+    - text_ja
+    - image_url
+    - index
+    - weighted
+    - num_answers
+    - preselected_index
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.goa.surveyquestion+json; view=default'
+    type: object
+  GoaUser:
+    description: A user (default view)
+    example:
+      birthdate: 1980-09-27T05:00:39+09:00
+      created_at: 1981-03-06T19:31:10+09:00
+      given_names: Et modi enim dolore natus sed.
+      id: 2.8336287e+18
+      last_names: Corporis doloribus est sunt quos illum et.
+      location: Quis quisquam et sit iusto.
+      mail: Unde omnis laudantium earum ut.
+      status: 3.5855148e+18
+      updated_at: 1989-12-15T07:09:52+09:00
+      username: Perspiciatis vitae nesciunt reprehenderit.
+    properties:
+      birthdate:
+        description: Birthdate
+        example: 1980-09-27T05:00:39+09:00
+        format: date-time
+        type: string
+      created_at:
+        description: Record created timestamp
+        example: 1981-03-06T19:31:10+09:00
+        format: date-time
+        type: string
+      given_names:
+        description: Given names
+        example: Et modi enim dolore natus sed.
+        type: string
+      id:
+        description: Unique ID
+        example: 2.8336287e+18
+        format: int64
+        type: integer
+      last_names:
+        description: Last names
+        example: Corporis doloribus est sunt quos illum et.
+        type: string
+      location:
+        description: Location
+        example: Quis quisquam et sit iusto.
+        type: string
+      mail:
+        description: E-mail address
+        example: Unde omnis laudantium earum ut.
+        type: string
+      status:
+        description: User status
+        example: 3.5855148e+18
+        format: int64
+        type: integer
+      updated_at:
+        description: Record updated timestamp
+        example: 1989-12-15T07:09:52+09:00
+        format: date-time
+        type: string
+      username:
+        description: Username
+        example: Perspiciatis vitae nesciunt reprehenderit.
+        type: string
+    required:
+    - id
+    - username
+    title: 'Mediatype identifier: application/vnd.goa.user+json; view=default'
+    type: object
+  Registerrequest:
+    example:
+      fname: Tenetur dolores laboriosam vel at.
+      lname: Veritatis vel et ut enim id.
+      pwd: Similique impedit ipsa ipsam et veniam.
+      referrer: 1.8656047e+18
+      user: Nulla sit et officia libero.
+    properties:
+      fname:
+        description: First name
+        example: Tenetur dolores laboriosam vel at.
+        type: string
+      lname:
+        description: Last name
+        example: Veritatis vel et ut enim id.
+        type: string
+      pwd:
+        description: Login password
+        example: Similique impedit ipsa ipsam et veniam.
+        type: string
+      referrer:
+        description: Referrer userid
+        example: 1.8656047e+18
+        format: int64
+        type: integer
+      user:
+        description: Login username
+        example: Nulla sit et officia libero.
+        type: string
+    required:
+    - user
+    - pwd
+    title: Registerrequest
+    type: object
+  SigninAuthPayload:
+    example:
+      password: Quo tenetur voluptas.
+      username: Voluptatem ut vel qui earum.
+    properties:
+      password:
+        example: Quo tenetur voluptas.
+        type: string
+      username:
+        example: Voluptatem ut vel qui earum.
+        type: string
+    required:
+    - username
+    - password
+    title: SigninAuthPayload
+    type: object
+  UpdateUsersPayload:
+    description: A user
+    example:
+      birthdate: 1980-09-27T05:00:39+09:00
+      created_at: 1981-03-06T19:31:10+09:00
+      given_names: Et modi enim dolore natus sed.
+      id: 2.8336287e+18
+      last_names: Corporis doloribus est sunt quos illum et.
+      location: Quis quisquam et sit iusto.
+      mail: Unde omnis laudantium earum ut.
+      status: 3.5855148e+18
+      updated_at: 1989-12-15T07:09:52+09:00
+      username: Perspiciatis vitae nesciunt reprehenderit.
+    properties:
+      birthdate:
+        description: Birthdate
+        example: 1980-09-27T05:00:39+09:00
+        format: date-time
+        type: string
+      created_at:
+        description: Record created timestamp
+        example: 1981-03-06T19:31:10+09:00
+        format: date-time
+        type: string
+      given_names:
+        description: Given names
+        example: Et modi enim dolore natus sed.
+        type: string
+      id:
+        description: Unique ID
+        example: 2.8336287e+18
+        format: int64
+        type: integer
+      last_names:
+        description: Last names
+        example: Corporis doloribus est sunt quos illum et.
+        type: string
+      location:
+        description: Location
+        example: Quis quisquam et sit iusto.
+        type: string
+      mail:
+        description: E-mail address
+        example: Unde omnis laudantium earum ut.
+        type: string
+      status:
+        description: User status
+        example: 3.5855148e+18
+        format: int64
+        type: integer
+      updated_at:
+        description: Record updated timestamp
+        example: 1989-12-15T07:09:52+09:00
+        format: date-time
+        type: string
+      username:
+        description: Username
+        example: Perspiciatis vitae nesciunt reprehenderit.
+        type: string
+    required:
+    - id
+    - username
+    title: UpdateUsersPayload
+    type: object
+  UpdatepasswordUsersPayload:
+    example:
+      oldPassword: Quis est est molestiae et sequi voluptatem.
+      password: Asperiores accusamus dicta necessitatibus ipsa similique illum.
+    properties:
+      oldPassword:
+        example: Quis est est molestiae et sequi voluptatem.
+        type: string
+      password:
+        example: Asperiores accusamus dicta necessitatibus ipsa similique illum.
+        type: string
+    required:
+    - password
+    title: UpdatepasswordUsersPayload
+    type: object
+host: api.kasoshojo.com
+info:
+  description: News and vote data
+  title: The kasoshojo API
+  version: ""
+paths:
+  /auth/:
+    get:
+      description: |-
+        This action will test authentication
+
+        Required security scopes:
+          * `api:user`
+      operationId: auth#secure
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: secure auth
+      tags:
+      - auth
+  /auth/signin:
+    post:
+      description: Creates a valid JWT
+      operationId: auth#signin
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/SigninAuthPayload'
+      responses:
+        "204":
+          description: No Content
+          headers:
+            Authorization:
+              description: Generated JWT
+              type: string
+        "401":
+          description: Unauthorized
+      schemes:
+      - http
+      summary: signin auth
+      tags:
+      - auth
+  /health_check:
+    get:
+      description: Perform health check.
+      operationId: health#health
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+      schemes:
+      - http
+      summary: health health
+      tags:
+      - health
+  /messages/me:
+    get:
+      description: |-
+        Get messages list
+
+        Required security scopes:
+          * `api:user`
+      operationId: messages#list
+      produces:
+      - application/vnd.goa.message+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaMessageCollection'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: list messages
+      tags:
+      - messages
+  /messages/me/{id}:
+    post:
+      description: |-
+        Mark message as red
+
+        Required security scopes:
+          * `api:user`
+      operationId: messages#read
+      parameters:
+      - description: Message ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: read messages
+      tags:
+      - messages
+  /news/:
+    get:
+      description: |-
+        Get news list
+
+        Required security scopes:
+          * `api:user`
+      operationId: news#list
+      produces:
+      - application/vnd.goa.news+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaNewsCollection'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: list news
+      tags:
+      - news
+  /surveys/:
+    get:
+      description: |-
+        Get news list
+
+        Required security scopes:
+          * `api:user`
+      operationId: surveys#list
+      produces:
+      - application/vnd.goa.survey+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaSurveyCollection'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: list surveys
+      tags:
+      - surveys
+  /surveys/{id}:
+    get:
+      description: |-
+        Get news list
+
+        Required security scopes:
+          * `api:user`
+      operationId: surveys#get
+      parameters:
+      - description: Survey ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/vnd.goa.survey+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaSurvey'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: get surveys
+      tags:
+      - surveys
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
+  /users/:
+    post:
+      description: Register a new user
+      operationId: users#register
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/Registerrequest'
+      responses:
+        "204":
+          description: No Content
+        "409":
+          description: Conflict
+        "422":
+          description: Unprocessable Entity
+      schemes:
+      - http
+      summary: register users
+      tags:
+      - users
+  /users/forgot:
+    post:
+      description: |-
+        Retrieve a new password
+
+        Required security scopes:
+          * `api:user`
+      operationId: users#forgotpassword
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/ForgotpasswordUsersPayload'
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: forgotpassword users
+      tags:
+      - users
+  /users/me:
+    get:
+      description: |-
+        Get user by authorization token
+
+        Required security scopes:
+          * `api:user`
+      operationId: users#view
+      produces:
+      - application/vnd.goa.user+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaUser'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: view users
+      tags:
+      - users
+    put:
+      description: |-
+        Update user by authorization token
+
+        Required security scopes:
+          * `api:user`
+      operationId: users#update
+      parameters:
+      - description: A user
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateUsersPayload'
+      produces:
+      - application/vnd.goa.user+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaUser'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "409":
+          description: Conflict
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: update users
+      tags:
+      - users
+  /users/me/codes:
+    post:
+      description: |-
+        Add a voting code
+
+        Required security scopes:
+          * `api:user`
+      operationId: users#addcode
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/AddcodeUsersPayload'
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: addcode users
+      tags:
+      - users
+  /users/me/password:
+    post:
+      description: |-
+        Set a new password
+
+        Required security scopes:
+          * `api:user`
+      operationId: users#updatepassword
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UpdatepasswordUsersPayload'
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: updatepassword users
+      tags:
+      - users
+produces:
+- application/json
+responses:
+  Conflict:
+    description: Conflict
+  NoContent:
+    description: No Content
+  NotFound:
+    description: Not Found
+  OK:
+    description: OK
+  Unauthorized:
+    description: Unauthorized
+  UnprocessableEntity:
+    description: Unprocessable Entity
+schemes:
+- http
+securityDefinitions:
+  jwt:
+    description: |2-
+
+
+      **Security Scopes**:
+        * `api:admin`: Admin API access
+        * `api:user`: User API access
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
