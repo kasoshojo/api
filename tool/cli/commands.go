@@ -258,7 +258,9 @@ Payload example:
    "lname": "Veritatis vel et ut enim id.",
    "pwd": "Similique impedit ipsa ipsam et veniam.",
    "referrer": 1865604744007057729,
-   "user": "Nulla sit et officia libero."
+   "secret_answer": "Nulla sit et officia libero.",
+   "secret_question": "Quis est est molestiae et sequi voluptatem.",
+   "user": "Asperiores accusamus dicta necessitatibus ipsa similique illum."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp9.Run(c, args) },
 	}
@@ -345,8 +347,8 @@ Payload example:
 Payload example:
 
 {
-   "oldPassword": "Quis est est molestiae et sequi voluptatem.",
-   "password": "Asperiores accusamus dicta necessitatibus ipsa similique illum."
+   "oldPassword": "Modi eos suscipit ipsam et neque.",
+   "password": "Vel ut voluptatem dolores similique error magnam."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp13.Run(c, args) },
 	}

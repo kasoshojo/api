@@ -114,10 +114,14 @@ var UserMedia = MediaType("application/vnd.goa.user+json", func() {
 
 var Register = Type("Registerrequest", func() {
 	Attribute("user", String, "Login username")
+	Attribute("pwd", String, "Login password")
 	Attribute("fname", String, "First name")
 	Attribute("lname", String, "Last name")
-	Attribute("pwd", String, "Login password")
 	Attribute("referrer", Integer, "Referrer userid")
+	Attribute("secret_question", String, "Secret question")
+	Attribute("secret_answer", String, "Secret answer")
 	Required("user")
 	Required("pwd")
+	Required("secret_question")
+	Required("secret_answer")
 })

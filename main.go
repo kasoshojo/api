@@ -102,6 +102,7 @@ func openDBConnection(dbuser string, dbpwd string, dbhost string, dbschema strin
 	}*/
 
 	connstring := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbuser, dbpwd, dbhost, dbschema)
+	log.Println(connstring)
 	db, err := gorm.Open("mysql", connstring)
 
 	if err != nil {

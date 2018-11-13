@@ -4,6 +4,8 @@ import (
 	"github.com/goadesign/goa"
 	"github.com/jinzhu/gorm"
 	"github.com/kasoshojo/api/app"
+	"github.com/kasoshojo/api/model"
+	"github.com/kasoshojo/api/util"
 )
 
 // UsersController implements the users resource.
@@ -31,10 +33,29 @@ func (c *UsersController) Addcode(ctx *app.AddcodeUsersContext) error {
 func (c *UsersController) Register(ctx *app.RegisterUsersContext) error {
 	// UsersController_Register: start_implement
 
-	// Put your logic here
+	user := model.User{}
 
-	// UsersController_Register: end_implement
-	return nil
+	c.db.Where("username = ?", ctx.Payload.User).First(&user)
+	if user.ID > 0 {
+		return ctx.Conflict()
+	}
+
+	if ctx.Payload.Fname != nil {
+		user.GivenNames = *ctx.Payload.Fname
+	}
+	if ctx.Payload.Lname != nil {
+		user.LastNames = *ctx.Payload.Lname
+	}
+	user.Username = ctx.Payload.User
+	user.Location = ""
+	user.Password = util.HashPassword(ctx.Payload.Pwd)
+	user.SecretAnswer = ctx.Payload.SecretAnswer
+	user.SecretQuestion = ctx.Payload.SecretQuestion
+
+	if err := c.db.Create(&user).Error; err != nil {
+		return err
+	}
+	return ctx.NoContent()
 }
 
 // Update runs the update action.

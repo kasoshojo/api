@@ -24,6 +24,10 @@ type registerrequest struct {
 	Pwd *string `form:"pwd,omitempty" json:"pwd,omitempty" xml:"pwd,omitempty"`
 	// Referrer userid
 	Referrer *int `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
+	// Secret answer
+	SecretAnswer *string `form:"secret_answer,omitempty" json:"secret_answer,omitempty" xml:"secret_answer,omitempty"`
+	// Secret question
+	SecretQuestion *string `form:"secret_question,omitempty" json:"secret_question,omitempty" xml:"secret_question,omitempty"`
 	// Login username
 	User *string `form:"user,omitempty" json:"user,omitempty" xml:"user,omitempty"`
 }
@@ -35,6 +39,12 @@ func (ut *registerrequest) Validate() (err error) {
 	}
 	if ut.Pwd == nil {
 		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "pwd"))
+	}
+	if ut.SecretQuestion == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "secret_question"))
+	}
+	if ut.SecretAnswer == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "secret_answer"))
 	}
 	return
 }
@@ -54,6 +64,12 @@ func (ut *registerrequest) Publicize() *Registerrequest {
 	if ut.Referrer != nil {
 		pub.Referrer = ut.Referrer
 	}
+	if ut.SecretAnswer != nil {
+		pub.SecretAnswer = *ut.SecretAnswer
+	}
+	if ut.SecretQuestion != nil {
+		pub.SecretQuestion = *ut.SecretQuestion
+	}
 	if ut.User != nil {
 		pub.User = *ut.User
 	}
@@ -70,6 +86,10 @@ type Registerrequest struct {
 	Pwd string `form:"pwd" json:"pwd" xml:"pwd"`
 	// Referrer userid
 	Referrer *int `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
+	// Secret answer
+	SecretAnswer string `form:"secret_answer" json:"secret_answer" xml:"secret_answer"`
+	// Secret question
+	SecretQuestion string `form:"secret_question" json:"secret_question" xml:"secret_question"`
 	// Login username
 	User string `form:"user" json:"user" xml:"user"`
 }
@@ -81,6 +101,12 @@ func (ut *Registerrequest) Validate() (err error) {
 	}
 	if ut.Pwd == "" {
 		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "pwd"))
+	}
+	if ut.SecretQuestion == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "secret_question"))
+	}
+	if ut.SecretAnswer == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "secret_answer"))
 	}
 	return
 }
