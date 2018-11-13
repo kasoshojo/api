@@ -4,6 +4,7 @@ import (
 	"github.com/goadesign/goa"
 	"github.com/jinzhu/gorm"
 	"github.com/kasoshojo/api/app"
+	"github.com/kasoshojo/api/model"
 )
 
 // NewsController implements the news resource.
@@ -19,11 +20,13 @@ func NewNewsController(service *goa.Service, database *gorm.DB) *NewsController 
 
 // List runs the list action.
 func (c *NewsController) List(ctx *app.ListNewsContext) error {
-	// NewsController_List: start_implement
-
-	// Put your logic here
-
-	// NewsController_List: end_implement
+	var news []model.News
+	c.db.Find(&news)
 	res := app.GoaNewsCollection{}
+
+	for _, n := range news {
+		temp := n.ToAppNews()
+		res = append(res, &temp)
+	}
 	return ctx.OK(res)
 }

@@ -21,7 +21,6 @@ func main() {
 	// Create service
 	service := goa.New("kasoshojo")
 
-	sslpath := os.Getenv("SSL_PATH")
 	dbuser := os.Getenv("DB_USER")
 	dbpwd := os.Getenv("DB_PWD")
 	dbhost := os.Getenv("DB_HOST")
@@ -67,13 +66,15 @@ func main() {
 	app.MountSwaggerController(service, c7)
 
 	// Start service
+
+	sslpath := os.Getenv("SSL_PATH")
 	if err := service.ListenAndServeTLS(":8080", sslpath+"fullchain.pem", sslpath+"privkey.pem"); err != nil {
 		service.LogError("startup", "err", err)
 	}
-	/*
-		if err := service.ListenAndServe(":8080"); err != nil {
-			service.LogError("startup", "err", err)
-		}*/
+
+	/*if err := service.ListenAndServe(":8080"); err != nil {
+		service.LogError("startup", "err", err)
+	}*/
 }
 
 func loadJWTPublicKeys() ([]jwt.Key, error) {
