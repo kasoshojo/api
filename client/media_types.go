@@ -363,6 +363,8 @@ type GoaUser struct {
 	Location *string `form:"location,omitempty" json:"location,omitempty" xml:"location,omitempty"`
 	// E-mail address
 	Mail *string `form:"mail,omitempty" json:"mail,omitempty" xml:"mail,omitempty"`
+	// Points
+	Points *int `form:"points,omitempty" json:"points,omitempty" xml:"points,omitempty"`
 	// User status
 	Status *int `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
 	// Record updated timestamp

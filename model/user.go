@@ -37,5 +37,6 @@ func (user *User) ToAppUser() app.GoaUser {
 	ret.UpdatedAt = user.UpdatedAt
 	ret.Location = &user.Location
 	ret.Username = user.Username
+	ret.Points = &user.Points
 	return ret
 }

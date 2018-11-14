@@ -608,6 +608,8 @@ type updateUsersPayload struct {
 	Location *string `form:"location,omitempty" json:"location,omitempty" xml:"location,omitempty"`
 	// E-mail address
 	Mail *string `form:"mail,omitempty" json:"mail,omitempty" xml:"mail,omitempty"`
+	// Points
+	Points *int `form:"points,omitempty" json:"points,omitempty" xml:"points,omitempty"`
 	// User status
 	Status *int `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
 	// Record updated timestamp
@@ -651,6 +653,9 @@ func (payload *updateUsersPayload) Publicize() *UpdateUsersPayload {
 	if payload.Mail != nil {
 		pub.Mail = payload.Mail
 	}
+	if payload.Points != nil {
+		pub.Points = payload.Points
+	}
 	if payload.Status != nil {
 		pub.Status = payload.Status
 	}
@@ -679,6 +684,8 @@ type UpdateUsersPayload struct {
 	Location *string `form:"location,omitempty" json:"location,omitempty" xml:"location,omitempty"`
 	// E-mail address
 	Mail *string `form:"mail,omitempty" json:"mail,omitempty" xml:"mail,omitempty"`
+	// Points
+	Points *int `form:"points,omitempty" json:"points,omitempty" xml:"points,omitempty"`
 	// User status
 	Status *int `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
 	// Record updated timestamp
