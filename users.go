@@ -1,7 +1,11 @@
 package main
 
 import (
+	"log"
+
+	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/goadesign/goa"
+	"github.com/goadesign/goa/middleware/security/jwt"
 	"github.com/jinzhu/gorm"
 	"github.com/kasoshojo/api/app"
 	"github.com/kasoshojo/api/model"
@@ -87,10 +91,17 @@ func (c *UsersController) Forgotpassword(ctx *app.ForgotpasswordUsersContext) er
 // View runs the view action.
 func (c *UsersController) View(ctx *app.ViewUsersContext) error {
 	// UsersController_View: start_implement
-
+	var user model.User
+	token := jwt.ContextJWT(ctx)
+	claims := token.Claims.(jwtgo.MapClaims)
+	userid := claims["user"]
+	log.Println(userid)
+	if err := c.db.Where("id = ?", userid).First(&user).Error; err != nil {
+		return ctx.NotFound()
+	}
 	// Put your logic here
 
 	// UsersController_View: end_implement
-	res := &app.GoaUser{}
-	return ctx.OK(res)
+	res := user.ToAppUser()
+	return ctx.OK(&res)
 }

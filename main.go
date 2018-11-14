@@ -68,13 +68,16 @@ func main() {
 	// Start service
 
 	sslpath := os.Getenv("SSL_PATH")
-	if err := service.ListenAndServeTLS(":8080", sslpath+"fullchain.pem", sslpath+"privkey.pem"); err != nil {
-		service.LogError("startup", "err", err)
+	if len(sslpath) > 0 {
+		log.Println("using SSL from " + sslpath)
+		if err := service.ListenAndServeTLS(":8080", sslpath+"fullchain.pem", sslpath+"privkey.pem"); err != nil {
+			service.LogError("startup", "err", err)
+		}
+	} else {
+		if err := service.ListenAndServe(":8080"); err != nil {
+			service.LogError("startup", "err", err)
+		}
 	}
-
-	/*if err := service.ListenAndServe(":8080"); err != nil {
-		service.LogError("startup", "err", err)
-	}*/
 }
 
 func loadJWTPublicKeys() ([]jwt.Key, error) {
