@@ -73,6 +73,15 @@ type (
 		PrettyPrint bool
 	}
 
+	// VoteSurveysCommand is the command line data structure for the vote action of surveys
+	VoteSurveysCommand struct {
+		Payload     string
+		ContentType string
+		// Survey ID
+		ID          int
+		PrettyPrint bool
+	}
+
 	// AddcodeUsersCommand is the command line data structure for the addcode action of users
 	AddcodeUsersCommand struct {
 		Payload     string
@@ -136,7 +145,7 @@ func RegisterCommands(app *cobra.Command, c *client.Client) {
 Payload example:
 
 {
-   "code": "Rerum sit praesentium harum dolorem sit."
+   "code": "Laboriosam dicta distinctio quisquam et et."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp1.Run(c, args) },
 	}
@@ -157,9 +166,9 @@ Payload example:
 Payload example:
 
 {
-   "securityanswer": "Laboriosam dicta distinctio quisquam et et.",
-   "securityquestion": "Deserunt animi.",
-   "username": "Officiis atque tenetur dolores laboriosam vel at."
+   "securityanswer": "Deserunt animi.",
+   "securityquestion": "Officiis atque tenetur dolores laboriosam vel at.",
+   "username": "Veritatis vel et ut enim id."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp2.Run(c, args) },
 	}
@@ -254,13 +263,13 @@ Payload example:
 Payload example:
 
 {
-   "fname": "Veritatis vel et ut enim id.",
-   "lname": "Similique impedit ipsa ipsam et veniam.",
-   "pwd": "Aut nulla sit.",
-   "referrer": 6706284838717481037,
-   "secret_answer": "Libero vitae quis est.",
-   "secret_question": "Molestiae et sequi.",
-   "user": "Minus asperiores accusamus."
+   "fname": "Similique impedit ipsa ipsam et veniam.",
+   "lname": "Aut nulla sit.",
+   "pwd": "Officia libero vitae quis est.",
+   "referrer": 1930164005099003329,
+   "secret_answer": "Et sequi voluptatem minus asperiores accusamus.",
+   "secret_question": "Necessitatibus ipsa.",
+   "user": "Illum sit modi eos suscipit."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp9.Run(c, args) },
 	}
@@ -348,8 +357,8 @@ Payload example:
 Payload example:
 
 {
-   "oldPassword": "Necessitatibus ipsa.",
-   "password": "Illum sit modi eos suscipit."
+   "oldPassword": "Et neque nobis vel ut.",
+   "password": "Dolores similique error magnam."
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp13.Run(c, args) },
 	}
@@ -369,6 +378,30 @@ Payload example:
 	}
 	tmp14.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp14.PrettyPrint, "pp", false, "Pretty print response body")
+	command.AddCommand(sub)
+	app.AddCommand(command)
+	command = &cobra.Command{
+		Use:   "vote",
+		Short: `Register an answer`,
+	}
+	tmp15 := new(VoteSurveysCommand)
+	sub = &cobra.Command{
+		Use:   `surveys ["/surveys/ID/results"]`,
+		Short: ``,
+		Long: `
+
+Payload example:
+
+{
+   "answer_id": 2035670978970210714,
+   "question_id": 6650558352392530481,
+   "text": "Praesentium harum dolorem.",
+   "weight": 4832451956428071085
+}`,
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp15.Run(c, args) },
+	}
+	tmp15.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp15.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 
@@ -779,6 +812,41 @@ func (cmd *ListSurveysCommand) Run(c *client.Client, args []string) error {
 
 // RegisterFlags registers the command flags with the command line.
 func (cmd *ListSurveysCommand) RegisterFlags(cc *cobra.Command, c *client.Client) {
+}
+
+// Run makes the HTTP request corresponding to the VoteSurveysCommand command.
+func (cmd *VoteSurveysCommand) Run(c *client.Client, args []string) error {
+	var path string
+	if len(args) > 0 {
+		path = args[0]
+	} else {
+		path = fmt.Sprintf("/surveys/%v/results", cmd.ID)
+	}
+	var payload client.SurveyResultPayload
+	if cmd.Payload != "" {
+		err := json.Unmarshal([]byte(cmd.Payload), &payload)
+		if err != nil {
+			return fmt.Errorf("failed to deserialize payload: %s", err)
+		}
+	}
+	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
+	ctx := goa.WithLogger(context.Background(), logger)
+	resp, err := c.VoteSurveys(ctx, path, &payload)
+	if err != nil {
+		goa.LogError(ctx, "failed", "err", err)
+		return err
+	}
+
+	goaclient.HandleResponse(c.Client, resp, cmd.PrettyPrint)
+	return nil
+}
+
+// RegisterFlags registers the command flags with the command line.
+func (cmd *VoteSurveysCommand) RegisterFlags(cc *cobra.Command, c *client.Client) {
+	cc.Flags().StringVar(&cmd.Payload, "payload", "", "Request body encoded in JSON")
+	cc.Flags().StringVar(&cmd.ContentType, "content", "", "Request content type override, e.g. 'application/x-www-form-urlencoded'")
+	var id int
+	cc.Flags().IntVar(&cmd.ID, "id", id, `Survey ID`)
 }
 
 // Run makes the HTTP request corresponding to the AddcodeUsersCommand command.

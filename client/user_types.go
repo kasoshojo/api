@@ -110,3 +110,62 @@ func (ut *Registerrequest) Validate() (err error) {
 	}
 	return
 }
+
+// surveyResultPayload user type.
+type surveyResultPayload struct {
+	// ID of answer
+	AnswerID *int `form:"answer_id,omitempty" json:"answer_id,omitempty" xml:"answer_id,omitempty"`
+	// ID of question
+	QuestionID *int `form:"question_id,omitempty" json:"question_id,omitempty" xml:"question_id,omitempty"`
+	// Answer text
+	Text *string `form:"text,omitempty" json:"text,omitempty" xml:"text,omitempty"`
+	// Weight
+	Weight *int `form:"weight,omitempty" json:"weight,omitempty" xml:"weight,omitempty"`
+}
+
+// Validate validates the surveyResultPayload type instance.
+func (ut *surveyResultPayload) Validate() (err error) {
+	if ut.QuestionID == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "question_id"))
+	}
+	if ut.AnswerID == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "answer_id"))
+	}
+	return
+}
+
+// Publicize creates SurveyResultPayload from surveyResultPayload
+func (ut *surveyResultPayload) Publicize() *SurveyResultPayload {
+	var pub SurveyResultPayload
+	if ut.AnswerID != nil {
+		pub.AnswerID = *ut.AnswerID
+	}
+	if ut.QuestionID != nil {
+		pub.QuestionID = *ut.QuestionID
+	}
+	if ut.Text != nil {
+		pub.Text = ut.Text
+	}
+	if ut.Weight != nil {
+		pub.Weight = ut.Weight
+	}
+	return &pub
+}
+
+// SurveyResultPayload user type.
+type SurveyResultPayload struct {
+	// ID of answer
+	AnswerID int `form:"answer_id" json:"answer_id" xml:"answer_id"`
+	// ID of question
+	QuestionID int `form:"question_id" json:"question_id" xml:"question_id"`
+	// Answer text
+	Text *string `form:"text,omitempty" json:"text,omitempty" xml:"text,omitempty"`
+	// Weight
+	Weight *int `form:"weight,omitempty" json:"weight,omitempty" xml:"weight,omitempty"`
+}
+
+// Validate validates the SurveyResultPayload type instance.
+func (ut *SurveyResultPayload) Validate() (err error) {
+
+	return
+}

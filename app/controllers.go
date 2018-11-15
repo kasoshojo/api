@@ -277,10 +277,9 @@ func MountNewsController(service *goa.Service, ctrl NewsController) {
 		}
 		return ctrl.List(rctx)
 	}
-	h = handleSecurity("jwt", h, "api:user")
 	h = handleNewsOrigin(h)
 	service.Mux.Handle("GET", "/news/", ctrl.MuxHandler("list", h, nil))
-	service.LogInfo("mount", "ctrl", "News", "action", "List", "route", "GET /news/", "security", "jwt")
+	service.LogInfo("mount", "ctrl", "News", "action", "List", "route", "GET /news/")
 }
 
 // handleNewsOrigin applies the CORS response headers corresponding to the origin.
@@ -314,6 +313,7 @@ type SurveysController interface {
 	goa.Muxer
 	Get(*GetSurveysContext) error
 	List(*ListSurveysContext) error
+	Vote(*VoteSurveysContext) error
 }
 
 // MountSurveysController "mounts" a Surveys resource controller on the given service.
@@ -322,6 +322,7 @@ func MountSurveysController(service *goa.Service, ctrl SurveysController) {
 	var h goa.Handler
 	service.Mux.Handle("OPTIONS", "/surveys/:id", ctrl.MuxHandler("preflight", handleSurveysOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/surveys/", ctrl.MuxHandler("preflight", handleSurveysOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/surveys/:id/results", ctrl.MuxHandler("preflight", handleSurveysOrigin(cors.HandlePreflight()), nil))
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -356,6 +357,29 @@ func MountSurveysController(service *goa.Service, ctrl SurveysController) {
 	h = handleSurveysOrigin(h)
 	service.Mux.Handle("GET", "/surveys/", ctrl.MuxHandler("list", h, nil))
 	service.LogInfo("mount", "ctrl", "Surveys", "action", "List", "route", "GET /surveys/", "security", "jwt")
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewVoteSurveysContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		// Build the payload
+		if rawPayload := goa.ContextRequest(ctx).Payload; rawPayload != nil {
+			rctx.Payload = rawPayload.(*SurveyResultPayload)
+		} else {
+			return goa.MissingPayloadError()
+		}
+		return ctrl.Vote(rctx)
+	}
+	h = handleSecurity("jwt", h, "api:user")
+	h = handleSurveysOrigin(h)
+	service.Mux.Handle("POST", "/surveys/:id/results", ctrl.MuxHandler("vote", h, unmarshalVoteSurveysPayload))
+	service.LogInfo("mount", "ctrl", "Surveys", "action", "Vote", "route", "POST /surveys/:id/results", "security", "jwt")
 }
 
 // handleSurveysOrigin applies the CORS response headers corresponding to the origin.
@@ -382,6 +406,21 @@ func handleSurveysOrigin(h goa.Handler) goa.Handler {
 
 		return h(ctx, rw, req)
 	}
+}
+
+// unmarshalVoteSurveysPayload unmarshals the request body into the context request data Payload field.
+func unmarshalVoteSurveysPayload(ctx context.Context, service *goa.Service, req *http.Request) error {
+	payload := &surveyResultPayload{}
+	if err := service.DecodeRequest(req, payload); err != nil {
+		return err
+	}
+	if err := payload.Validate(); err != nil {
+		// Initialize payload with private data structure so it can be logged
+		goa.ContextRequest(ctx).Payload = payload
+		return err
+	}
+	goa.ContextRequest(ctx).Payload = payload.Publicize()
+	return nil
 }
 
 // SwaggerController is the controller interface for the Swagger actions.

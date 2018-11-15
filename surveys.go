@@ -28,3 +28,10 @@ func (c *SurveysController) Get(ctx *app.GetSurveysContext) error {
 	res := app.GoaSurvey{}
 	return ctx.OK(&res)
 }
+
+func (c *SurveysController) Vote(ctx *app.VoteSurveysContext) error {
+
+	
+
+	return ctx.NoContent()
+}

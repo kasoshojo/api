@@ -3,10 +3,10 @@ consumes:
 definitions:
   AddcodeUsersPayload:
     example:
-      code: Rerum sit praesentium harum dolorem sit.
+      code: Laboriosam dicta distinctio quisquam et et.
     properties:
       code:
-        example: Rerum sit praesentium harum dolorem sit.
+        example: Laboriosam dicta distinctio quisquam et et.
         type: string
     required:
     - code
@@ -14,19 +14,19 @@ definitions:
     type: object
   ForgotpasswordUsersPayload:
     example:
-      securityanswer: Laboriosam dicta distinctio quisquam et et.
-      securityquestion: Deserunt animi.
-      username: Officiis atque tenetur dolores laboriosam vel at.
+      securityanswer: Deserunt animi.
+      securityquestion: Officiis atque tenetur dolores laboriosam vel at.
+      username: Veritatis vel et ut enim id.
     properties:
       securityanswer:
-        example: Laboriosam dicta distinctio quisquam et et.
+        example: Deserunt animi.
         type: string
       securityquestion:
-        example: Deserunt animi.
+        example: Officiis atque tenetur dolores laboriosam vel at.
         type: string
       username:
         description: Username
-        example: Officiis atque tenetur dolores laboriosam vel at.
+        example: Veritatis vel et ut enim id.
         type: string
     required:
     - username
@@ -104,6 +104,13 @@ definitions:
       read: false
       title: Qui molestiae laborum.
       updated_at: 2007-05-02T17:24:47+09:00
+    - body: Qui non aut in eum.
+      created_at: 1973-06-28T15:55:33+09:00
+      date: 1983-05-14T01:49:52+09:00
+      id: 9.719804e+17
+      read: false
+      title: Qui molestiae laborum.
+      updated_at: 2007-05-02T17:24:47+09:00
     items:
       $ref: '#/definitions/GoaMessage'
     title: 'Mediatype identifier: application/vnd.goa.message+json; type=collection;
@@ -165,6 +172,20 @@ definitions:
     description: GoaNewsCollection is the media type for an array of GoaNews (default
       view)
     example:
+    - created_at: 2000-04-11T17:00:35+09:00
+      date: 1982-04-26T06:55:54+09:00
+      id: 8.716162e+16
+      image_url: Fugiat placeat possimus nihil aperiam.
+      title: Sit iure repellat qui.
+      updated_at: 2005-01-04T21:17:00+09:00
+      url: Soluta ipsa.
+    - created_at: 2000-04-11T17:00:35+09:00
+      date: 1982-04-26T06:55:54+09:00
+      id: 8.716162e+16
+      image_url: Fugiat placeat possimus nihil aperiam.
+      title: Sit iure repellat qui.
+      updated_at: 2005-01-04T21:17:00+09:00
+      url: Soluta ipsa.
     - created_at: 2000-04-11T17:00:35+09:00
       date: 1982-04-26T06:55:54+09:00
       id: 8.716162e+16
@@ -420,90 +441,6 @@ definitions:
     description: GoaSurveyCollection is the media type for an array of GoaSurvey (default
       view)
     example:
-    - author: Dolorem cumque.
-      created_at: 1983-11-13T15:23:15+09:00
-      end_date: 1978-07-17T18:27:00+09:00
-      id: 7.4388696e+18
-      image_url: Rerum omnis.
-      insertion_code: Explicabo tempora.
-      num_questions: 1.8104567e+18
-      questions:
-      - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      reward_id: 4.4783125e+18
-      start_date: 1984-03-08T20:59:14+09:00
-      title_en: Molestias earum modi nemo.
-      title_ja: Est commodi maxime.
-      type: 6.2674466e+18
-      updated_at: 1988-06-04T18:12:59+09:00
     - author: Dolorem cumque.
       created_at: 1983-11-13T15:23:15+09:00
       end_date: 1978-07-17T18:27:00+09:00
@@ -852,42 +789,42 @@ definitions:
     type: object
   Registerrequest:
     example:
-      fname: Veritatis vel et ut enim id.
-      lname: Similique impedit ipsa ipsam et veniam.
-      pwd: Aut nulla sit.
-      referrer: 6.706285e+18
-      secret_answer: Libero vitae quis est.
-      secret_question: Molestiae et sequi.
-      user: Minus asperiores accusamus.
+      fname: Similique impedit ipsa ipsam et veniam.
+      lname: Aut nulla sit.
+      pwd: Officia libero vitae quis est.
+      referrer: 1.930164e+18
+      secret_answer: Et sequi voluptatem minus asperiores accusamus.
+      secret_question: Necessitatibus ipsa.
+      user: Illum sit modi eos suscipit.
     properties:
       fname:
         description: First name
-        example: Veritatis vel et ut enim id.
+        example: Similique impedit ipsa ipsam et veniam.
         type: string
       lname:
         description: Last name
-        example: Similique impedit ipsa ipsam et veniam.
+        example: Aut nulla sit.
         type: string
       pwd:
         description: Login password
-        example: Aut nulla sit.
+        example: Officia libero vitae quis est.
         type: string
       referrer:
         description: Referrer userid
-        example: 6.706285e+18
+        example: 1.930164e+18
         format: int64
         type: integer
       secret_answer:
         description: Secret answer
-        example: Libero vitae quis est.
+        example: Et sequi voluptatem minus asperiores accusamus.
         type: string
       secret_question:
         description: Secret question
-        example: Molestiae et sequi.
+        example: Necessitatibus ipsa.
         type: string
       user:
         description: Login username
-        example: Minus asperiores accusamus.
+        example: Illum sit modi eos suscipit.
         type: string
     required:
     - user
@@ -911,6 +848,37 @@ definitions:
     - username
     - password
     title: SigninAuthPayload
+    type: object
+  SurveyResultPayload:
+    example:
+      answer_id: 2.035671e+18
+      question_id: 6.650558e+18
+      text: Praesentium harum dolorem.
+      weight: 4.832452e+18
+    properties:
+      answer_id:
+        description: ID of answer
+        example: 2.035671e+18
+        format: int64
+        type: integer
+      question_id:
+        description: ID of question
+        example: 6.650558e+18
+        format: int64
+        type: integer
+      text:
+        description: Answer text
+        example: Praesentium harum dolorem.
+        type: string
+      weight:
+        description: Weight
+        example: 4.832452e+18
+        format: int64
+        type: integer
+    required:
+    - question_id
+    - answer_id
+    title: SurveyResultPayload
     type: object
   UpdateUsersPayload:
     description: A user
@@ -984,14 +952,14 @@ definitions:
     type: object
   UpdatepasswordUsersPayload:
     example:
-      oldPassword: Necessitatibus ipsa.
-      password: Illum sit modi eos suscipit.
+      oldPassword: Et neque nobis vel ut.
+      password: Dolores similique error magnam.
     properties:
       oldPassword:
-        example: Necessitatibus ipsa.
+        example: Et neque nobis vel ut.
         type: string
       password:
-        example: Illum sit modi eos suscipit.
+        example: Dolores similique error magnam.
         type: string
     required:
     - password
@@ -1122,11 +1090,7 @@ paths:
       - messages
   /news/:
     get:
-      description: |-
-        Get news list
-
-        Required security scopes:
-          * `api:user`
+      description: Get news list
       operationId: news#list
       produces:
       - application/vnd.goa.news+json; type=collection
@@ -1141,9 +1105,6 @@ paths:
           description: Not Found
       schemes:
       - http
-      security:
-      - jwt:
-        - api:user
       summary: list news
       tags:
       - news
@@ -1205,6 +1166,40 @@ paths:
       - jwt:
         - api:user
       summary: get surveys
+      tags:
+      - surveys
+  /surveys/{id}/results:
+    post:
+      description: |-
+        Register an answer
+
+        Required security scopes:
+          * `api:user`
+      operationId: surveys#vote
+      parameters:
+      - description: Survey ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/SurveyResultPayload'
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt:
+        - api:user
+      summary: vote surveys
       tags:
       - surveys
   /swagger.json:

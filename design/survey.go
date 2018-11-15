@@ -31,6 +31,27 @@ var _ = Resource("surveys", func() {
 		Response(NotFound)
 		Response(Unauthorized)
 	})
+
+	Action("vote", func() {
+		Description("Register an answer")
+		Routing(POST("/:id/results"))
+		Params(func() {
+			Param("id", Integer, "Survey ID")
+		})
+		Payload(ResultPayload)
+		Response(NoContent)
+		Response(NotFound)
+		Response(Unauthorized)
+	})
+})
+
+var ResultPayload = Type("SurveyResultPayload", func() {
+	Attribute("question_id", Integer, "ID of question")
+	Attribute("answer_id", Integer, "ID of answer")
+	Attribute("weight", Integer, "Weight")
+	Attribute("text", String, "Answer text")
+	Required("question_id")
+	Required("answer_id")
 })
 
 var SurveyAnswerMedia = MediaType("application/vnd.goa.surveyanswer+json", func() {

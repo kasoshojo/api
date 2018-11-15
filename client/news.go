@@ -43,8 +43,5 @@ func (c *Client) NewListNewsRequest(ctx context.Context, path string) (*http.Req
 	if err != nil {
 		return nil, err
 	}
-	if c.JWTSigner != nil {
-		c.JWTSigner.Sign(req)
-	}
 	return req, nil
 }

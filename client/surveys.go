@@ -11,6 +11,7 @@
 package client
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"net/http"
@@ -77,6 +78,46 @@ func (c *Client) NewListSurveysRequest(ctx context.Context, path string) (*http.
 	if err != nil {
 		return nil, err
 	}
+	if c.JWTSigner != nil {
+		c.JWTSigner.Sign(req)
+	}
+	return req, nil
+}
+
+// VoteSurveysPath computes a request path to the vote action of surveys.
+func VoteSurveysPath(id int) string {
+	param0 := strconv.Itoa(id)
+
+	return fmt.Sprintf("/surveys/%s/results", param0)
+}
+
+// Register an answer
+func (c *Client) VoteSurveys(ctx context.Context, path string, payload *SurveyResultPayload) (*http.Response, error) {
+	req, err := c.NewVoteSurveysRequest(ctx, path, payload)
+	if err != nil {
+		return nil, err
+	}
+	return c.Client.Do(ctx, req)
+}
+
+// NewVoteSurveysRequest create the request corresponding to the vote action endpoint of the surveys resource.
+func (c *Client) NewVoteSurveysRequest(ctx context.Context, path string, payload *SurveyResultPayload) (*http.Request, error) {
+	var body bytes.Buffer
+	err := c.Encoder.Encode(payload, &body, "*/*")
+	if err != nil {
+		return nil, fmt.Errorf("failed to encode body: %s", err)
+	}
+	scheme := c.Scheme
+	if scheme == "" {
+		scheme = "http"
+	}
+	u := url.URL{Host: c.Host, Scheme: scheme, Path: path}
+	req, err := http.NewRequest("POST", u.String(), &body)
+	if err != nil {
+		return nil, err
+	}
+	header := req.Header
+	header.Set("Content-Type", "application/json")
 	if c.JWTSigner != nil {
 		c.JWTSigner.Sign(req)
 	}

@@ -8,10 +8,7 @@ import (
 var _ = Resource("news", func() {
 	BasePath("/news")
 	DefaultMedia(NewsMedia)
-
-	Security(JWT, func() {
-		Scope("api:user")
-	})
+	NoSecurity()
 
 	Action("list", func() {
 		Description("Get news list")

@@ -370,6 +370,54 @@ func (ctx *ListSurveysContext) NotFound() error {
 	return nil
 }
 
+// VoteSurveysContext provides the surveys vote action context.
+type VoteSurveysContext struct {
+	context.Context
+	*goa.ResponseData
+	*goa.RequestData
+	ID      int
+	Payload *SurveyResultPayload
+}
+
+// NewVoteSurveysContext parses the incoming request URL and body, performs validations and creates the
+// context used by the surveys controller vote action.
+func NewVoteSurveysContext(ctx context.Context, r *http.Request, service *goa.Service) (*VoteSurveysContext, error) {
+	var err error
+	resp := goa.ContextResponse(ctx)
+	resp.Service = service
+	req := goa.ContextRequest(ctx)
+	req.Request = r
+	rctx := VoteSurveysContext{Context: ctx, ResponseData: resp, RequestData: req}
+	paramID := req.Params["id"]
+	if len(paramID) > 0 {
+		rawID := paramID[0]
+		if id, err2 := strconv.Atoi(rawID); err2 == nil {
+			rctx.ID = id
+		} else {
+			err = goa.MergeErrors(err, goa.InvalidParamTypeError("id", rawID, "integer"))
+		}
+	}
+	return &rctx, err
+}
+
+// NoContent sends a HTTP response with status code 204.
+func (ctx *VoteSurveysContext) NoContent() error {
+	ctx.ResponseData.WriteHeader(204)
+	return nil
+}
+
+// Unauthorized sends a HTTP response with status code 401.
+func (ctx *VoteSurveysContext) Unauthorized() error {
+	ctx.ResponseData.WriteHeader(401)
+	return nil
+}
+
+// NotFound sends a HTTP response with status code 404.
+func (ctx *VoteSurveysContext) NotFound() error {
+	ctx.ResponseData.WriteHeader(404)
+	return nil
+}
+
 // AddcodeUsersContext provides the users addcode action context.
 type AddcodeUsersContext struct {
 	context.Context
