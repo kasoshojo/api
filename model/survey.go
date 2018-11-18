@@ -4,6 +4,16 @@ import (
 	"time"
 )
 
+type Survey struct {
+	ID     int
+	Type   int
+	Status *int
+}
+
+func (Survey) TableName() string {
+	return "surveys"
+}
+
 type SurveyResult struct {
 	ID               int
 	CustomerID       int
