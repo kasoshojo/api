@@ -79,6 +79,8 @@ var _ = Resource("users", func() {
 		})
 		Response(NoContent)
 		Response(Unauthorized)
+		Response(NotFound)
+		Response(Conflict)
 	})
 })
 

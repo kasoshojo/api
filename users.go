@@ -40,16 +40,22 @@ func (c *UsersController) Addcode(ctx *app.AddcodeUsersContext) error {
 	if err != nil {
 		return err
 	}
-	code.CustomerID = &user.ID
-	now := time.Now()
-	code.ClaimDate = &now
-	c.db.Save(&code)
+	if code.ID > 0 {
+		if code.CustomerID != nil {
+			return ctx.Conflict()
+		}
+		code.CustomerID = &user.ID
+		now := time.Now()
+		code.ClaimDate = &now
+		c.db.Save(&code)
 
-	if code.Points != nil {
-		user.Points = user.Points + *code.Points
-		c.db.Save(&user)
+		if code.Points != nil {
+			user.Points = user.Points + *code.Points
+			c.db.Save(&user)
+		}
+		return ctx.NoContent()
 	}
-	return ctx.NoContent()
+	return ctx.Err()
 }
 
 // Register runs the register action.

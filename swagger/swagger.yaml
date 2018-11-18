@@ -1345,6 +1345,10 @@ paths:
           description: No Content
         "401":
           description: Unauthorized
+        "404":
+          description: Not Found
+        "409":
+          description: Conflict
       schemes:
       - http
       security:

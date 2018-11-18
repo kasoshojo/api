@@ -485,6 +485,18 @@ func (ctx *AddcodeUsersContext) Unauthorized() error {
 	return nil
 }
 
+// NotFound sends a HTTP response with status code 404.
+func (ctx *AddcodeUsersContext) NotFound() error {
+	ctx.ResponseData.WriteHeader(404)
+	return nil
+}
+
+// Conflict sends a HTTP response with status code 409.
+func (ctx *AddcodeUsersContext) Conflict() error {
+	ctx.ResponseData.WriteHeader(409)
+	return nil
+}
+
 // ForgotpasswordUsersContext provides the users forgotpassword action context.
 type ForgotpasswordUsersContext struct {
 	context.Context
