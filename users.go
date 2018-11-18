@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/goadesign/goa"
@@ -25,12 +26,30 @@ func NewUsersController(service *goa.Service, database *gorm.DB) *UsersControlle
 
 // Addcode runs the addcode action.
 func (c *UsersController) Addcode(ctx *app.AddcodeUsersContext) error {
-	// UsersController_Addcode: start_implement
+	var user model.User
+	token := jwt.ContextJWT(ctx)
+	claims := token.Claims.(jwtgo.MapClaims)
+	userid := claims["user"]
+	log.Println(userid)
+	if err := c.db.Where("id = ?", userid).First(&user).Error; err != nil {
+		return ctx.Unauthorized()
+	}
 
-	// Put your logic here
+	var code model.VoteCode
+	err := c.db.Where("code = ?", ctx.Payload.Code).Find(&code).Error
+	if err != nil {
+		return err
+	}
+	code.CustomerID = &user.ID
+	now := time.Now()
+	code.ClaimDate = &now
+	c.db.Save(&code)
 
-	// UsersController_Addcode: end_implement
-	return nil
+	if code.Points != nil {
+		user.Points = user.Points + *code.Points
+		c.db.Save(&user)
+	}
+	return ctx.NoContent()
 }
 
 // Register runs the register action.
