@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/rsa"
+	"io/ioutil"
 	"log"
 	"time"
 
@@ -16,12 +18,18 @@ import (
 // UsersController implements the users resource.
 type UsersController struct {
 	*goa.Controller
-	db *gorm.DB
+	db         *gorm.DB
+	privateKey *rsa.PrivateKey
 }
 
 // NewUsersController creates a users controller.
 func NewUsersController(service *goa.Service, database *gorm.DB) *UsersController {
-	return &UsersController{Controller: service.NewController("UsersController"), db: database}
+	b, err := ioutil.ReadFile("./key/jwtRS256.key")
+	if err != nil {
+		return nil
+	}
+	privKey, err := jwtgo.ParseRSAPrivateKeyFromPEM(b)
+	return &UsersController{Controller: service.NewController("UsersController"), db: database, privateKey: privKey}
 }
 
 // Addcode runs the addcode action.
@@ -84,6 +92,12 @@ func (c *UsersController) Register(ctx *app.RegisterUsersContext) error {
 	if err := c.db.Create(&user).Error; err != nil {
 		return err
 	}
+
+	signedToken := util.GenerateJWTToken(user.ID, &user.Username, c.privateKey, []string{"api:user"})
+
+	// Set auth header for client retrieval
+	ctx.ResponseData.Header().Set("Authorization", "Bearer "+signedToken)
+
 	return ctx.NoContent()
 }
 
