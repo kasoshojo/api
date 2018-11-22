@@ -3,10 +3,10 @@ consumes:
 definitions:
   AddcodeUsersPayload:
     example:
-      code: Laboriosam dicta distinctio quisquam et et.
+      code: Sit et.
     properties:
       code:
-        example: Laboriosam dicta distinctio quisquam et et.
+        example: Sit et.
         type: string
     required:
     - code
@@ -14,19 +14,19 @@ definitions:
     type: object
   ForgotpasswordUsersPayload:
     example:
-      securityanswer: Deserunt animi.
-      securityquestion: Officiis atque tenetur dolores laboriosam vel at.
-      username: Veritatis vel et ut enim id.
+      securityanswer: Libero vitae quis est.
+      securityquestion: Molestiae et sequi.
+      username: Minus asperiores accusamus.
     properties:
       securityanswer:
-        example: Deserunt animi.
+        example: Libero vitae quis est.
         type: string
       securityquestion:
-        example: Officiis atque tenetur dolores laboriosam vel at.
+        example: Molestiae et sequi.
         type: string
       username:
         description: Username
-        example: Veritatis vel et ut enim id.
+        example: Minus asperiores accusamus.
         type: string
     required:
     - username
@@ -97,20 +97,6 @@ definitions:
       read: false
       title: Qui molestiae laborum.
       updated_at: 2007-05-02T17:24:47+09:00
-    - body: Qui non aut in eum.
-      created_at: 1973-06-28T15:55:33+09:00
-      date: 1983-05-14T01:49:52+09:00
-      id: 9.719804e+17
-      read: false
-      title: Qui molestiae laborum.
-      updated_at: 2007-05-02T17:24:47+09:00
-    - body: Qui non aut in eum.
-      created_at: 1973-06-28T15:55:33+09:00
-      date: 1983-05-14T01:49:52+09:00
-      id: 9.719804e+17
-      read: false
-      title: Qui molestiae laborum.
-      updated_at: 2007-05-02T17:24:47+09:00
     items:
       $ref: '#/definitions/GoaMessage'
     title: 'Mediatype identifier: application/vnd.goa.message+json; type=collection;
@@ -123,9 +109,14 @@ definitions:
       date: 1982-04-26T06:55:54+09:00
       id: 8.716162e+16
       image_url: Fugiat placeat possimus nihil aperiam.
-      title: Sit iure repellat qui.
-      updated_at: 2005-01-04T21:17:00+09:00
-      url: Soluta ipsa.
+      image_url_en: Sit iure repellat qui.
+      image_url_ja: Aut soluta ipsa sit.
+      title_en: Dolorem cumque.
+      title_ja: Qui molestias earum rerum.
+      updated_at: 1988-04-05T13:37:58+09:00
+      url: Explicabo tempora.
+      url_en: Tempora tempora.
+      url_ja: Dolor quisquam et rem et.
     properties:
       created_at:
         description: Record created timestamp
@@ -146,22 +137,43 @@ definitions:
         description: Image url
         example: Fugiat placeat possimus nihil aperiam.
         type: string
-      title:
-        description: Title
+      image_url_en:
+        description: Image url
         example: Sit iure repellat qui.
+        type: string
+      image_url_ja:
+        description: Image url
+        example: Aut soluta ipsa sit.
+        type: string
+      title_en:
+        description: Title
+        example: Dolorem cumque.
+        type: string
+      title_ja:
+        description: Title
+        example: Qui molestias earum rerum.
         type: string
       updated_at:
         description: Record updated timestamp
-        example: 2005-01-04T21:17:00+09:00
+        example: 1988-04-05T13:37:58+09:00
         format: date-time
         type: string
       url:
         description: News url
-        example: Soluta ipsa.
+        example: Explicabo tempora.
+        type: string
+      url_en:
+        description: News url
+        example: Tempora tempora.
+        type: string
+      url_ja:
+        description: News url
+        example: Dolor quisquam et rem et.
         type: string
     required:
     - id
-    - title
+    - title_en
+    - title_ja
     - image_url
     - url
     - date
@@ -176,23 +188,38 @@ definitions:
       date: 1982-04-26T06:55:54+09:00
       id: 8.716162e+16
       image_url: Fugiat placeat possimus nihil aperiam.
-      title: Sit iure repellat qui.
-      updated_at: 2005-01-04T21:17:00+09:00
-      url: Soluta ipsa.
+      image_url_en: Sit iure repellat qui.
+      image_url_ja: Aut soluta ipsa sit.
+      title_en: Dolorem cumque.
+      title_ja: Qui molestias earum rerum.
+      updated_at: 1988-04-05T13:37:58+09:00
+      url: Explicabo tempora.
+      url_en: Tempora tempora.
+      url_ja: Dolor quisquam et rem et.
     - created_at: 2000-04-11T17:00:35+09:00
       date: 1982-04-26T06:55:54+09:00
       id: 8.716162e+16
       image_url: Fugiat placeat possimus nihil aperiam.
-      title: Sit iure repellat qui.
-      updated_at: 2005-01-04T21:17:00+09:00
-      url: Soluta ipsa.
+      image_url_en: Sit iure repellat qui.
+      image_url_ja: Aut soluta ipsa sit.
+      title_en: Dolorem cumque.
+      title_ja: Qui molestias earum rerum.
+      updated_at: 1988-04-05T13:37:58+09:00
+      url: Explicabo tempora.
+      url_en: Tempora tempora.
+      url_ja: Dolor quisquam et rem et.
     - created_at: 2000-04-11T17:00:35+09:00
       date: 1982-04-26T06:55:54+09:00
       id: 8.716162e+16
       image_url: Fugiat placeat possimus nihil aperiam.
-      title: Sit iure repellat qui.
-      updated_at: 2005-01-04T21:17:00+09:00
-      url: Soluta ipsa.
+      image_url_en: Sit iure repellat qui.
+      image_url_ja: Aut soluta ipsa sit.
+      title_en: Dolorem cumque.
+      title_ja: Qui molestias earum rerum.
+      updated_at: 1988-04-05T13:37:58+09:00
+      url: Explicabo tempora.
+      url_en: Tempora tempora.
+      url_ja: Dolor quisquam et rem et.
     items:
       $ref: '#/definitions/GoaNews'
     title: 'Mediatype identifier: application/vnd.goa.news+json; type=collection;
@@ -201,225 +228,155 @@ definitions:
   GoaSurvey:
     description: A survey (default view)
     example:
-      author: Dolorem cumque.
-      created_at: 1983-11-13T15:23:15+09:00
-      end_date: 1978-07-17T18:27:00+09:00
-      id: 7.4388696e+18
-      image_url: Rerum omnis.
-      insertion_code: Explicabo tempora.
-      num_questions: 1.8104567e+18
+      author: Harum eaque ratione quo quia est.
+      created_at: 2015-12-12T10:58:01+09:00
+      end_date: 2006-05-19T05:16:19+09:00
+      id: 6.610032e+18
+      image_url: Ab nobis aut aliquam consequatur.
+      insertion_code: Tempora autem sunt doloremque quis at neque.
+      num_questions: 4.815584e+18
       questions:
       - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      reward_id: 4.4783125e+18
-      start_date: 1984-03-08T20:59:14+09:00
-      title_en: Molestias earum modi nemo.
-      title_ja: Est commodi maxime.
-      type: 6.2674466e+18
-      updated_at: 1988-06-04T18:12:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        created_at: 1970-01-23T07:12:13+09:00
+        id: 6.2674466e+18
+        image_url: Explicabo praesentium vero.
+        index: 1.7950825e+18
+        num_answers: 2.7394107e+18
+        preselected_index: 7.3733316e+18
+        text_en: Iusto corporis totam blanditiis quod nisi nostrum.
+        text_ja: Ut officiis voluptas dolor quibusdam illo non.
+        updated_at: 1995-11-17T04:28:36+09:00
+        weighted: true
+      reward_id: 8.131926e+17
+      start_date: 1986-02-02T17:54:21+09:00
+      title_en: Dicta laborum expedita veniam ea soluta praesentium.
+      title_ja: Quis quia enim quas.
+      type: 4.1334864e+18
+      updated_at: 1973-08-04T23:56:30+09:00
     properties:
       author:
         description: Author
-        example: Dolorem cumque.
+        example: Harum eaque ratione quo quia est.
         type: string
       created_at:
         description: Record created timestamp
-        example: 1983-11-13T15:23:15+09:00
+        example: 2015-12-12T10:58:01+09:00
         format: date-time
         type: string
       end_date:
         description: End
-        example: 1978-07-17T18:27:00+09:00
+        example: 2006-05-19T05:16:19+09:00
         format: date-time
         type: string
       id:
         description: Unique ID
-        example: 7.4388696e+18
+        example: 6.610032e+18
         format: int64
         type: integer
       image_url:
         description: image URL
-        example: Rerum omnis.
+        example: Ab nobis aut aliquam consequatur.
         type: string
       insertion_code:
         description: Insertion code
-        example: Explicabo tempora.
+        example: Tempora autem sunt doloremque quis at neque.
         type: string
       num_questions:
         description: Number of questions
-        example: 1.8104567e+18
+        example: 4.815584e+18
         format: int64
         type: integer
       questions:
         description: Questions
         example:
         - answers:
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          created_at: 1971-10-21T23:42:22+09:00
-          id: 6.2920824e+17
-          image_url: Ut tempora autem sunt doloremque quis.
-          index: 7.2394034e+18
-          num_answers: 8.9197315e+18
-          preselected_index: 4.815584e+18
-          text_en: Nisi iure quaerat dolores aut.
-          text_ja: Exercitationem a voluptatum.
-          updated_at: 1975-06-11T07:36:24+09:00
-          weighted: false
-        - answers:
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          - created_at: 1975-06-01T15:25:24+09:00
-            id: 4.5164397e+18
-            image_url: Et rem et dolorem facilis harum eaque.
-            index: 8.277058e+18
-            open_answer: true
-            text_en: Est veritatis.
-            text_ja: Delectus omnis ab.
-            updated_at: 1983-11-05T06:02:54+09:00
-          created_at: 1971-10-21T23:42:22+09:00
-          id: 6.2920824e+17
-          image_url: Ut tempora autem sunt doloremque quis.
-          index: 7.2394034e+18
-          num_answers: 8.9197315e+18
-          preselected_index: 4.815584e+18
-          text_en: Nisi iure quaerat dolores aut.
-          text_ja: Exercitationem a voluptatum.
-          updated_at: 1975-06-11T07:36:24+09:00
-          weighted: false
+          - created_at: 1981-10-20T10:38:19+09:00
+            id: 2.865456e+18
+            image_url: Aut nihil.
+            index: 6.4543955e+18
+            open_answer: false
+            text_en: Sunt a cupiditate.
+            text_ja: Ullam molestias earum modi nemo sunt est.
+            updated_at: 1995-01-09T18:14:59+09:00
+          - created_at: 1981-10-20T10:38:19+09:00
+            id: 2.865456e+18
+            image_url: Aut nihil.
+            index: 6.4543955e+18
+            open_answer: false
+            text_en: Sunt a cupiditate.
+            text_ja: Ullam molestias earum modi nemo sunt est.
+            updated_at: 1995-01-09T18:14:59+09:00
+          - created_at: 1981-10-20T10:38:19+09:00
+            id: 2.865456e+18
+            image_url: Aut nihil.
+            index: 6.4543955e+18
+            open_answer: false
+            text_en: Sunt a cupiditate.
+            text_ja: Ullam molestias earum modi nemo sunt est.
+            updated_at: 1995-01-09T18:14:59+09:00
+          created_at: 1970-01-23T07:12:13+09:00
+          id: 6.2674466e+18
+          image_url: Explicabo praesentium vero.
+          index: 1.7950825e+18
+          num_answers: 2.7394107e+18
+          preselected_index: 7.3733316e+18
+          text_en: Iusto corporis totam blanditiis quod nisi nostrum.
+          text_ja: Ut officiis voluptas dolor quibusdam illo non.
+          updated_at: 1995-11-17T04:28:36+09:00
+          weighted: true
         items:
           $ref: '#/definitions/GoaSurveyquestion'
         type: array
       reward_id:
         description: Reward ID
-        example: 4.4783125e+18
+        example: 8.131926e+17
         format: int64
         type: integer
       start_date:
         description: Start
-        example: 1984-03-08T20:59:14+09:00
+        example: 1986-02-02T17:54:21+09:00
         format: date-time
         type: string
       title_en:
         description: Title
-        example: Molestias earum modi nemo.
+        example: Dicta laborum expedita veniam ea soluta praesentium.
         type: string
       title_ja:
         description: Title
-        example: Est commodi maxime.
+        example: Quis quia enim quas.
         type: string
       type:
         description: Survey type
-        example: 6.2674466e+18
+        example: 4.1334864e+18
         format: int64
         type: integer
       updated_at:
         description: Record updated timestamp
-        example: 1988-06-04T18:12:59+09:00
+        example: 1973-08-04T23:56:30+09:00
         format: date-time
         type: string
     required:
@@ -441,90 +398,55 @@ definitions:
     description: GoaSurveyCollection is the media type for an array of GoaSurvey (default
       view)
     example:
-    - author: Dolorem cumque.
-      created_at: 1983-11-13T15:23:15+09:00
-      end_date: 1978-07-17T18:27:00+09:00
-      id: 7.4388696e+18
-      image_url: Rerum omnis.
-      insertion_code: Explicabo tempora.
-      num_questions: 1.8104567e+18
+    - author: Harum eaque ratione quo quia est.
+      created_at: 2015-12-12T10:58:01+09:00
+      end_date: 2006-05-19T05:16:19+09:00
+      id: 6.610032e+18
+      image_url: Ab nobis aut aliquam consequatur.
+      insertion_code: Tempora autem sunt doloremque quis at neque.
+      num_questions: 4.815584e+18
       questions:
       - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      - answers:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        created_at: 1971-10-21T23:42:22+09:00
-        id: 6.2920824e+17
-        image_url: Ut tempora autem sunt doloremque quis.
-        index: 7.2394034e+18
-        num_answers: 8.9197315e+18
-        preselected_index: 4.815584e+18
-        text_en: Nisi iure quaerat dolores aut.
-        text_ja: Exercitationem a voluptatum.
-        updated_at: 1975-06-11T07:36:24+09:00
-        weighted: false
-      reward_id: 4.4783125e+18
-      start_date: 1984-03-08T20:59:14+09:00
-      title_en: Molestias earum modi nemo.
-      title_ja: Est commodi maxime.
-      type: 6.2674466e+18
-      updated_at: 1988-06-04T18:12:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        created_at: 1970-01-23T07:12:13+09:00
+        id: 6.2674466e+18
+        image_url: Explicabo praesentium vero.
+        index: 1.7950825e+18
+        num_answers: 2.7394107e+18
+        preselected_index: 7.3733316e+18
+        text_en: Iusto corporis totam blanditiis quod nisi nostrum.
+        text_ja: Ut officiis voluptas dolor quibusdam illo non.
+        updated_at: 1995-11-17T04:28:36+09:00
+        weighted: true
+      reward_id: 8.131926e+17
+      start_date: 1986-02-02T17:54:21+09:00
+      title_en: Dicta laborum expedita veniam ea soluta praesentium.
+      title_ja: Quis quia enim quas.
+      type: 4.1334864e+18
+      updated_at: 1973-08-04T23:56:30+09:00
     items:
       $ref: '#/definitions/GoaSurvey'
     title: 'Mediatype identifier: application/vnd.goa.survey+json; type=collection;
@@ -533,49 +455,49 @@ definitions:
   GoaSurveyanswer:
     description: A survey answer (default view)
     example:
-      created_at: 1975-06-01T15:25:24+09:00
-      id: 4.5164397e+18
-      image_url: Et rem et dolorem facilis harum eaque.
-      index: 8.277058e+18
-      open_answer: true
-      text_en: Est veritatis.
-      text_ja: Delectus omnis ab.
-      updated_at: 1983-11-05T06:02:54+09:00
+      created_at: 1981-10-20T10:38:19+09:00
+      id: 2.865456e+18
+      image_url: Aut nihil.
+      index: 6.4543955e+18
+      open_answer: false
+      text_en: Sunt a cupiditate.
+      text_ja: Ullam molestias earum modi nemo sunt est.
+      updated_at: 1995-01-09T18:14:59+09:00
     properties:
       created_at:
         description: Record created timestamp
-        example: 1975-06-01T15:25:24+09:00
+        example: 1981-10-20T10:38:19+09:00
         format: date-time
         type: string
       id:
         description: Unique ID
-        example: 4.5164397e+18
+        example: 2.865456e+18
         format: int64
         type: integer
       image_url:
         description: image URL
-        example: Et rem et dolorem facilis harum eaque.
+        example: Aut nihil.
         type: string
       index:
         description: Index
-        example: 8.277058e+18
+        example: 6.4543955e+18
         format: int64
         type: integer
       open_answer:
         description: Open answer
-        example: true
+        example: false
         type: boolean
       text_en:
         description: Text
-        example: Est veritatis.
+        example: Sunt a cupiditate.
         type: string
       text_ja:
         description: Text
-        example: Delectus omnis ab.
+        example: Ullam molestias earum modi nemo sunt est.
         type: string
       updated_at:
         description: Record updated timestamp
-        example: 1983-11-05T06:02:54+09:00
+        example: 1995-01-09T18:14:59+09:00
         format: date-time
         type: string
     required:
@@ -593,116 +515,116 @@ definitions:
     description: A survey question (default view)
     example:
       answers:
-      - created_at: 1975-06-01T15:25:24+09:00
-        id: 4.5164397e+18
-        image_url: Et rem et dolorem facilis harum eaque.
-        index: 8.277058e+18
-        open_answer: true
-        text_en: Est veritatis.
-        text_ja: Delectus omnis ab.
-        updated_at: 1983-11-05T06:02:54+09:00
-      - created_at: 1975-06-01T15:25:24+09:00
-        id: 4.5164397e+18
-        image_url: Et rem et dolorem facilis harum eaque.
-        index: 8.277058e+18
-        open_answer: true
-        text_en: Est veritatis.
-        text_ja: Delectus omnis ab.
-        updated_at: 1983-11-05T06:02:54+09:00
-      - created_at: 1975-06-01T15:25:24+09:00
-        id: 4.5164397e+18
-        image_url: Et rem et dolorem facilis harum eaque.
-        index: 8.277058e+18
-        open_answer: true
-        text_en: Est veritatis.
-        text_ja: Delectus omnis ab.
-        updated_at: 1983-11-05T06:02:54+09:00
-      created_at: 1971-10-21T23:42:22+09:00
-      id: 6.2920824e+17
-      image_url: Ut tempora autem sunt doloremque quis.
-      index: 7.2394034e+18
-      num_answers: 8.9197315e+18
-      preselected_index: 4.815584e+18
-      text_en: Nisi iure quaerat dolores aut.
-      text_ja: Exercitationem a voluptatum.
-      updated_at: 1975-06-11T07:36:24+09:00
-      weighted: false
+      - created_at: 1981-10-20T10:38:19+09:00
+        id: 2.865456e+18
+        image_url: Aut nihil.
+        index: 6.4543955e+18
+        open_answer: false
+        text_en: Sunt a cupiditate.
+        text_ja: Ullam molestias earum modi nemo sunt est.
+        updated_at: 1995-01-09T18:14:59+09:00
+      - created_at: 1981-10-20T10:38:19+09:00
+        id: 2.865456e+18
+        image_url: Aut nihil.
+        index: 6.4543955e+18
+        open_answer: false
+        text_en: Sunt a cupiditate.
+        text_ja: Ullam molestias earum modi nemo sunt est.
+        updated_at: 1995-01-09T18:14:59+09:00
+      - created_at: 1981-10-20T10:38:19+09:00
+        id: 2.865456e+18
+        image_url: Aut nihil.
+        index: 6.4543955e+18
+        open_answer: false
+        text_en: Sunt a cupiditate.
+        text_ja: Ullam molestias earum modi nemo sunt est.
+        updated_at: 1995-01-09T18:14:59+09:00
+      created_at: 1970-01-23T07:12:13+09:00
+      id: 6.2674466e+18
+      image_url: Explicabo praesentium vero.
+      index: 1.7950825e+18
+      num_answers: 2.7394107e+18
+      preselected_index: 7.3733316e+18
+      text_en: Iusto corporis totam blanditiis quod nisi nostrum.
+      text_ja: Ut officiis voluptas dolor quibusdam illo non.
+      updated_at: 1995-11-17T04:28:36+09:00
+      weighted: true
     properties:
       answers:
         description: Answers
         example:
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
-        - created_at: 1975-06-01T15:25:24+09:00
-          id: 4.5164397e+18
-          image_url: Et rem et dolorem facilis harum eaque.
-          index: 8.277058e+18
-          open_answer: true
-          text_en: Est veritatis.
-          text_ja: Delectus omnis ab.
-          updated_at: 1983-11-05T06:02:54+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
+        - created_at: 1981-10-20T10:38:19+09:00
+          id: 2.865456e+18
+          image_url: Aut nihil.
+          index: 6.4543955e+18
+          open_answer: false
+          text_en: Sunt a cupiditate.
+          text_ja: Ullam molestias earum modi nemo sunt est.
+          updated_at: 1995-01-09T18:14:59+09:00
         items:
           $ref: '#/definitions/GoaSurveyanswer'
         type: array
       created_at:
         description: Record created timestamp
-        example: 1971-10-21T23:42:22+09:00
+        example: 1970-01-23T07:12:13+09:00
         format: date-time
         type: string
       id:
         description: Unique ID
-        example: 6.2920824e+17
+        example: 6.2674466e+18
         format: int64
         type: integer
       image_url:
         description: image URL
-        example: Ut tempora autem sunt doloremque quis.
+        example: Explicabo praesentium vero.
         type: string
       index:
         description: Index
-        example: 7.2394034e+18
+        example: 1.7950825e+18
         format: int64
         type: integer
       num_answers:
         description: Number of answers
-        example: 8.9197315e+18
+        example: 2.7394107e+18
         format: int64
         type: integer
       preselected_index:
         description: Index of preselected answer
-        example: 4.815584e+18
+        example: 7.3733316e+18
         format: int64
         type: integer
       text_en:
         description: Text
-        example: Nisi iure quaerat dolores aut.
+        example: Iusto corporis totam blanditiis quod nisi nostrum.
         type: string
       text_ja:
         description: Text
-        example: Exercitationem a voluptatum.
+        example: Ut officiis voluptas dolor quibusdam illo non.
         type: string
       updated_at:
         description: Record updated timestamp
-        example: 1975-06-11T07:36:24+09:00
+        example: 1995-11-17T04:28:36+09:00
         format: date-time
         type: string
       weighted:
         description: Weighted
-        example: false
+        example: true
         type: boolean
     required:
     - id
@@ -720,67 +642,67 @@ definitions:
   GoaUser:
     description: A user (default view)
     example:
-      birthdate: 1980-09-27T05:00:39+09:00
-      created_at: 1981-03-06T19:31:10+09:00
-      given_names: Et modi enim dolore natus sed.
-      id: 2.8336287e+18
-      last_names: Corporis doloribus est sunt quos illum et.
-      location: Quis quisquam et sit iusto.
-      mail: Unde omnis laudantium earum ut.
-      points: 3.5855148e+18
-      status: 3.9917712e+18
-      updated_at: 1997-04-14T13:19:43+09:00
-      username: Vitae nesciunt reprehenderit nisi quo.
+      birthdate: 1997-11-24T14:27:25+09:00
+      created_at: 1989-08-07T17:38:01+09:00
+      given_names: Vel qui earum consectetur.
+      id: 3.0567952e+18
+      last_names: Rerum sit praesentium harum dolorem sit.
+      location: Laboriosam dicta distinctio quisquam et et.
+      mail: Deserunt animi.
+      points: 6.180426e+17
+      status: 1.8828445e+18
+      updated_at: 1975-03-21T09:51:45+09:00
+      username: Dolores laboriosam.
     properties:
       birthdate:
         description: Birthdate
-        example: 1980-09-27T05:00:39+09:00
+        example: 1997-11-24T14:27:25+09:00
         format: date-time
         type: string
       created_at:
         description: Record created timestamp
-        example: 1981-03-06T19:31:10+09:00
+        example: 1989-08-07T17:38:01+09:00
         format: date-time
         type: string
       given_names:
         description: Given names
-        example: Et modi enim dolore natus sed.
+        example: Vel qui earum consectetur.
         type: string
       id:
         description: Unique ID
-        example: 2.8336287e+18
+        example: 3.0567952e+18
         format: int64
         type: integer
       last_names:
         description: Last names
-        example: Corporis doloribus est sunt quos illum et.
+        example: Rerum sit praesentium harum dolorem sit.
         type: string
       location:
         description: Location
-        example: Quis quisquam et sit iusto.
+        example: Laboriosam dicta distinctio quisquam et et.
         type: string
       mail:
         description: E-mail address
-        example: Unde omnis laudantium earum ut.
+        example: Deserunt animi.
         type: string
       points:
         description: Points
-        example: 3.5855148e+18
+        example: 6.180426e+17
         format: int64
         type: integer
       status:
         description: User status
-        example: 3.9917712e+18
+        example: 1.8828445e+18
         format: int64
         type: integer
       updated_at:
         description: Record updated timestamp
-        example: 1997-04-14T13:19:43+09:00
+        example: 1975-03-21T09:51:45+09:00
         format: date-time
         type: string
       username:
         description: Username
-        example: Vitae nesciunt reprehenderit nisi quo.
+        example: Dolores laboriosam.
         type: string
     required:
     - id
@@ -789,42 +711,42 @@ definitions:
     type: object
   Registerrequest:
     example:
-      fname: Similique impedit ipsa ipsam et veniam.
-      lname: Aut nulla sit.
-      pwd: Officia libero vitae quis est.
-      referrer: 1.930164e+18
-      secret_answer: Et sequi voluptatem minus asperiores accusamus.
-      secret_question: Necessitatibus ipsa.
-      user: Illum sit modi eos suscipit.
+      fname: Necessitatibus ipsa.
+      lname: Illum sit modi eos suscipit.
+      pwd: Et neque nobis vel ut.
+      referrer: 2.8399794e+18
+      secret_answer: Similique error magnam autem et.
+      secret_question: Iure quia.
+      user: Qui qui veniam.
     properties:
       fname:
         description: First name
-        example: Similique impedit ipsa ipsam et veniam.
+        example: Necessitatibus ipsa.
         type: string
       lname:
         description: Last name
-        example: Aut nulla sit.
+        example: Illum sit modi eos suscipit.
         type: string
       pwd:
         description: Login password
-        example: Officia libero vitae quis est.
+        example: Et neque nobis vel ut.
         type: string
       referrer:
         description: Referrer userid
-        example: 1.930164e+18
+        example: 2.8399794e+18
         format: int64
         type: integer
       secret_answer:
         description: Secret answer
-        example: Et sequi voluptatem minus asperiores accusamus.
+        example: Similique error magnam autem et.
         type: string
       secret_question:
         description: Secret question
-        example: Necessitatibus ipsa.
+        example: Iure quia.
         type: string
       user:
         description: Login username
-        example: Illum sit modi eos suscipit.
+        example: Qui qui veniam.
         type: string
     required:
     - user
@@ -835,14 +757,14 @@ definitions:
     type: object
   SigninAuthPayload:
     example:
-      password: Voluptas culpa.
-      username: Ut vel qui earum consectetur laborum.
+      password: At dolorum veritatis vel et ut.
+      username: Id doloremque similique impedit.
     properties:
       password:
-        example: Voluptas culpa.
+        example: At dolorum veritatis vel et ut.
         type: string
       username:
-        example: Ut vel qui earum consectetur laborum.
+        example: Id doloremque similique impedit.
         type: string
     required:
     - username
@@ -851,28 +773,28 @@ definitions:
     type: object
   SurveyResultPayload:
     example:
-      answer_id: 2.035671e+18
-      question_id: 6.650558e+18
-      text: Praesentium harum dolorem.
-      weight: 4.832452e+18
+      answer_id: 7.899869e+18
+      question_id: 5.527366e+18
+      text: Veniam facilis.
+      weight: 3.0941387e+18
     properties:
       answer_id:
         description: ID of answer
-        example: 2.035671e+18
+        example: 7.899869e+18
         format: int64
         type: integer
       question_id:
         description: ID of question
-        example: 6.650558e+18
+        example: 5.527366e+18
         format: int64
         type: integer
       text:
         description: Answer text
-        example: Praesentium harum dolorem.
+        example: Veniam facilis.
         type: string
       weight:
         description: Weight
-        example: 4.832452e+18
+        example: 3.0941387e+18
         format: int64
         type: integer
     required:
@@ -883,67 +805,67 @@ definitions:
   UpdateUsersPayload:
     description: A user
     example:
-      birthdate: 1980-09-27T05:00:39+09:00
-      created_at: 1981-03-06T19:31:10+09:00
-      given_names: Et modi enim dolore natus sed.
-      id: 2.8336287e+18
-      last_names: Corporis doloribus est sunt quos illum et.
-      location: Quis quisquam et sit iusto.
-      mail: Unde omnis laudantium earum ut.
-      points: 3.5855148e+18
-      status: 3.9917712e+18
-      updated_at: 1997-04-14T13:19:43+09:00
-      username: Vitae nesciunt reprehenderit nisi quo.
+      birthdate: 1997-11-24T14:27:25+09:00
+      created_at: 1989-08-07T17:38:01+09:00
+      given_names: Vel qui earum consectetur.
+      id: 3.0567952e+18
+      last_names: Rerum sit praesentium harum dolorem sit.
+      location: Laboriosam dicta distinctio quisquam et et.
+      mail: Deserunt animi.
+      points: 6.180426e+17
+      status: 1.8828445e+18
+      updated_at: 1975-03-21T09:51:45+09:00
+      username: Dolores laboriosam.
     properties:
       birthdate:
         description: Birthdate
-        example: 1980-09-27T05:00:39+09:00
+        example: 1997-11-24T14:27:25+09:00
         format: date-time
         type: string
       created_at:
         description: Record created timestamp
-        example: 1981-03-06T19:31:10+09:00
+        example: 1989-08-07T17:38:01+09:00
         format: date-time
         type: string
       given_names:
         description: Given names
-        example: Et modi enim dolore natus sed.
+        example: Vel qui earum consectetur.
         type: string
       id:
         description: Unique ID
-        example: 2.8336287e+18
+        example: 3.0567952e+18
         format: int64
         type: integer
       last_names:
         description: Last names
-        example: Corporis doloribus est sunt quos illum et.
+        example: Rerum sit praesentium harum dolorem sit.
         type: string
       location:
         description: Location
-        example: Quis quisquam et sit iusto.
+        example: Laboriosam dicta distinctio quisquam et et.
         type: string
       mail:
         description: E-mail address
-        example: Unde omnis laudantium earum ut.
+        example: Deserunt animi.
         type: string
       points:
         description: Points
-        example: 3.5855148e+18
+        example: 6.180426e+17
         format: int64
         type: integer
       status:
         description: User status
-        example: 3.9917712e+18
+        example: 1.8828445e+18
         format: int64
         type: integer
       updated_at:
         description: Record updated timestamp
-        example: 1997-04-14T13:19:43+09:00
+        example: 1975-03-21T09:51:45+09:00
         format: date-time
         type: string
       username:
         description: Username
-        example: Vitae nesciunt reprehenderit nisi quo.
+        example: Dolores laboriosam.
         type: string
     required:
     - id
@@ -952,14 +874,14 @@ definitions:
     type: object
   UpdatepasswordUsersPayload:
     example:
-      oldPassword: Et neque nobis vel ut.
-      password: Dolores similique error magnam.
+      oldPassword: Unde nihil in qui.
+      password: Dolores nobis rerum.
     properties:
       oldPassword:
-        example: Et neque nobis vel ut.
+        example: Unde nihil in qui.
         type: string
       password:
-        example: Dolores similique error magnam.
+        example: Dolores nobis rerum.
         type: string
     required:
     - password

@@ -77,19 +77,32 @@ type GoaNews struct {
 	ID int `form:"id" json:"id" xml:"id"`
 	// Image url
 	ImageURL string `form:"image_url" json:"image_url" xml:"image_url"`
+	// Image url
+	ImageURLEn *string `form:"image_url_en,omitempty" json:"image_url_en,omitempty" xml:"image_url_en,omitempty"`
+	// Image url
+	ImageURLJa *string `form:"image_url_ja,omitempty" json:"image_url_ja,omitempty" xml:"image_url_ja,omitempty"`
 	// Title
-	Title string `form:"title" json:"title" xml:"title"`
+	TitleEn string `form:"title_en" json:"title_en" xml:"title_en"`
+	// Title
+	TitleJa string `form:"title_ja" json:"title_ja" xml:"title_ja"`
 	// Record updated timestamp
 	UpdatedAt *time.Time `form:"updated_at,omitempty" json:"updated_at,omitempty" xml:"updated_at,omitempty"`
 	// News url
 	URL string `form:"url" json:"url" xml:"url"`
+	// News url
+	URLEn *string `form:"url_en,omitempty" json:"url_en,omitempty" xml:"url_en,omitempty"`
+	// News url
+	URLJa *string `form:"url_ja,omitempty" json:"url_ja,omitempty" xml:"url_ja,omitempty"`
 }
 
 // Validate validates the GoaNews media type instance.
 func (mt *GoaNews) Validate() (err error) {
 
-	if mt.Title == "" {
-		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "title"))
+	if mt.TitleEn == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "title_en"))
+	}
+	if mt.TitleJa == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "title_ja"))
 	}
 	if mt.ImageURL == "" {
 		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "image_url"))
