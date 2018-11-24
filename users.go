@@ -52,15 +52,19 @@ func (c *UsersController) Addcode(ctx *app.AddcodeUsersContext) error {
 		if code.CustomerID != nil {
 			return ctx.Conflict()
 		}
+
+		var product model.Product
+		err := c.db.Where("id = ?", code.ProductID).Find(&product).Error
+		if err != nil {
+			return err
+		}
+
 		code.CustomerID = &user.ID
 		now := time.Now()
 		code.ClaimDate = &now
 		c.db.Save(&code)
-
-		if code.Points != nil {
-			user.Points = user.Points + *code.Points
-			c.db.Save(&user)
-		}
+		user.Points = user.Points + product.Points
+		c.db.Save(&user)
 		return ctx.NoContent()
 	}
 	return ctx.Err()
