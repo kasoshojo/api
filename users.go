@@ -98,6 +98,32 @@ func (c *UsersController) Register(ctx *app.RegisterUsersContext) error {
 		return err
 	}
 
+	if ctx.Payload.Referrer != nil {
+		var code model.VoteCode
+		err := c.db.Where("code = ?", ctx.Payload.Referrer).Find(&code).Error
+		if err != nil {
+
+		}
+		if code.ID > 0 {
+			if code.CustomerID != nil {
+				return ctx.Conflict()
+			}
+
+			var product model.Product
+			err := c.db.Where("id = ?", code.ProductID).Find(&product).Error
+			if err != nil {
+				return err
+			}
+
+			code.CustomerID = &user.ID
+			now := time.Now()
+			code.ClaimDate = &now
+			c.db.Save(&code)
+			user.Points = user.Points + product.Points
+			c.db.Save(&user)
+		}
+	}
+
 	signedToken := util.GenerateJWTToken(user.ID, &user.Username, c.privateKey, []string{"api:user"})
 
 	// Set auth header for client retrieval
@@ -147,5 +173,11 @@ func (c *UsersController) View(ctx *app.ViewUsersContext) error {
 
 	// UsersController_View: end_implement
 	res := user.ToAppUser()
+	var codes []model.VoteCode
+	c.db.Where("customer_id = ?", userid).Find(&codes)
+	res.Codes = []string{}
+	for _, e := range codes {
+		res.Codes = append(res.Codes, e.Code)
+	}
 	return ctx.OK(&res)
 }

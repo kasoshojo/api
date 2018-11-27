@@ -656,6 +656,8 @@ func NewUpdateUsersContext(ctx context.Context, r *http.Request, service *goa.Se
 type updateUsersPayload struct {
 	// Birthdate
 	Birthdate *time.Time `form:"birthdate,omitempty" json:"birthdate,omitempty" xml:"birthdate,omitempty"`
+	// Codes
+	Codes []string `form:"codes,omitempty" json:"codes,omitempty" xml:"codes,omitempty"`
 	// Record created timestamp
 	CreatedAt *time.Time `form:"created_at,omitempty" json:"created_at,omitempty" xml:"created_at,omitempty"`
 	// Given names
@@ -695,6 +697,9 @@ func (payload *updateUsersPayload) Publicize() *UpdateUsersPayload {
 	if payload.Birthdate != nil {
 		pub.Birthdate = payload.Birthdate
 	}
+	if payload.Codes != nil {
+		pub.Codes = payload.Codes
+	}
 	if payload.CreatedAt != nil {
 		pub.CreatedAt = payload.CreatedAt
 	}
@@ -732,6 +737,8 @@ func (payload *updateUsersPayload) Publicize() *UpdateUsersPayload {
 type UpdateUsersPayload struct {
 	// Birthdate
 	Birthdate *time.Time `form:"birthdate,omitempty" json:"birthdate,omitempty" xml:"birthdate,omitempty"`
+	// Codes
+	Codes []string `form:"codes,omitempty" json:"codes,omitempty" xml:"codes,omitempty"`
 	// Record created timestamp
 	CreatedAt *time.Time `form:"created_at,omitempty" json:"created_at,omitempty" xml:"created_at,omitempty"`
 	// Given names

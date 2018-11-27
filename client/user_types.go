@@ -22,8 +22,8 @@ type registerrequest struct {
 	Lname *string `form:"lname,omitempty" json:"lname,omitempty" xml:"lname,omitempty"`
 	// Login password
 	Pwd *string `form:"pwd,omitempty" json:"pwd,omitempty" xml:"pwd,omitempty"`
-	// Referrer userid
-	Referrer *int `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
+	// Referral
+	Referrer *string `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
 	// Secret answer
 	SecretAnswer *string `form:"secret_answer,omitempty" json:"secret_answer,omitempty" xml:"secret_answer,omitempty"`
 	// Secret question
@@ -84,8 +84,8 @@ type Registerrequest struct {
 	Lname *string `form:"lname,omitempty" json:"lname,omitempty" xml:"lname,omitempty"`
 	// Login password
 	Pwd string `form:"pwd" json:"pwd" xml:"pwd"`
-	// Referrer userid
-	Referrer *int `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
+	// Referral
+	Referrer *string `form:"referrer,omitempty" json:"referrer,omitempty" xml:"referrer,omitempty"`
 	// Secret answer
 	SecretAnswer string `form:"secret_answer" json:"secret_answer" xml:"secret_answer"`
 	// Secret question

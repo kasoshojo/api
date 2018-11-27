@@ -150,6 +150,8 @@ func (c *Client) NewRegisterUsersRequest(ctx context.Context, path string, paylo
 type UpdateUsersPayload struct {
 	// Birthdate
 	Birthdate *time.Time `form:"birthdate,omitempty" json:"birthdate,omitempty" xml:"birthdate,omitempty"`
+	// Codes
+	Codes []string `form:"codes,omitempty" json:"codes,omitempty" xml:"codes,omitempty"`
 	// Record created timestamp
 	CreatedAt *time.Time `form:"created_at,omitempty" json:"created_at,omitempty" xml:"created_at,omitempty"`
 	// Given names
