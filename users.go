@@ -92,6 +92,7 @@ func (c *UsersController) Register(ctx *app.RegisterUsersContext) error {
 	user.Password = util.HashPassword(ctx.Payload.Pwd)
 	user.SecretAnswer = ctx.Payload.SecretAnswer
 	user.SecretQuestion = ctx.Payload.SecretQuestion
+	user.Points = 1
 
 	if err := c.db.Create(&user).Error; err != nil {
 		return err
