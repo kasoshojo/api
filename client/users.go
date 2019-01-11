@@ -110,6 +110,40 @@ func (c *Client) NewForgotpasswordUsersRequest(ctx context.Context, path string,
 	return req, nil
 }
 
+// GetquestionUsersPath computes a request path to the getquestion action of users.
+func GetquestionUsersPath() string {
+
+	return fmt.Sprintf("/users/question")
+}
+
+// Get security question
+func (c *Client) GetquestionUsers(ctx context.Context, path string, username *string) (*http.Response, error) {
+	req, err := c.NewGetquestionUsersRequest(ctx, path, username)
+	if err != nil {
+		return nil, err
+	}
+	return c.Client.Do(ctx, req)
+}
+
+// NewGetquestionUsersRequest create the request corresponding to the getquestion action endpoint of the users resource.
+func (c *Client) NewGetquestionUsersRequest(ctx context.Context, path string, username *string) (*http.Request, error) {
+	scheme := c.Scheme
+	if scheme == "" {
+		scheme = "http"
+	}
+	u := url.URL{Host: c.Host, Scheme: scheme, Path: path}
+	values := u.Query()
+	if username != nil {
+		values.Set("username", *username)
+	}
+	u.RawQuery = values.Encode()
+	req, err := http.NewRequest("GET", u.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+	return req, nil
+}
+
 // RegisterUsersPath computes a request path to the register action of users.
 func RegisterUsersPath() string {
 

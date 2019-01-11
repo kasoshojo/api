@@ -94,7 +94,7 @@ func handleAuthOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -164,7 +164,7 @@ func handleHealthOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -239,7 +239,7 @@ func handleMessagesOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -294,7 +294,7 @@ func handleNewsOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -394,7 +394,7 @@ func handleSurveysOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -453,7 +453,7 @@ func handleSwaggerOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
@@ -472,6 +472,7 @@ type UsersController interface {
 	goa.Muxer
 	Addcode(*AddcodeUsersContext) error
 	Forgotpassword(*ForgotpasswordUsersContext) error
+	Getquestion(*GetquestionUsersContext) error
 	Register(*RegisterUsersContext) error
 	Update(*UpdateUsersContext) error
 	Updatepassword(*UpdatepasswordUsersContext) error
@@ -484,6 +485,7 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 	var h goa.Handler
 	service.Mux.Handle("OPTIONS", "/users/me/codes", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/users/forgot", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/users/question", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/users/", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/users/me", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/users/me/password", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
@@ -533,6 +535,22 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 	h = handleUsersOrigin(h)
 	service.Mux.Handle("POST", "/users/forgot", ctrl.MuxHandler("forgotpassword", h, unmarshalForgotpasswordUsersPayload))
 	service.LogInfo("mount", "ctrl", "Users", "action", "Forgotpassword", "route", "POST /users/forgot", "security", "jwt")
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewGetquestionUsersContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		return ctrl.Getquestion(rctx)
+	}
+	h = handleUsersOrigin(h)
+	service.Mux.Handle("GET", "/users/question", ctrl.MuxHandler("getquestion", h, nil))
+	service.LogInfo("mount", "ctrl", "Users", "action", "Getquestion", "route", "GET /users/question")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -632,7 +650,7 @@ func handleUsersOrigin(h goa.Handler) goa.Handler {
 		if cors.MatchOrigin(origin, "*") {
 			ctx = goa.WithLogContext(ctx, "origin", origin)
 			rw.Header().Set("Access-Control-Allow-Origin", origin)
-			rw.Header().Set("Access-Control-Expose-Headers", "Authorization")
+			rw.Header().Set("Access-Control-Expose-Headers", "Authorization, Content-Type, Origin")
 			rw.Header().Set("Access-Control-Allow-Credentials", "true")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request

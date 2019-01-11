@@ -96,6 +96,13 @@ type (
 		PrettyPrint bool
 	}
 
+	// GetquestionUsersCommand is the command line data structure for the getquestion action of users
+	GetquestionUsersCommand struct {
+		// Username
+		Username    string
+		PrettyPrint bool
+	}
+
 	// RegisterUsersCommand is the command line data structure for the register action of users
 	RegisterUsersCommand struct {
 		Payload     string
@@ -191,12 +198,12 @@ Payload example:
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
-		Use:   "health",
-		Short: `Perform health check.`,
+		Use:   "getquestion",
+		Short: `Get security question`,
 	}
-	tmp4 := new(HealthHealthCommand)
+	tmp4 := new(GetquestionUsersCommand)
 	sub = &cobra.Command{
-		Use:   `health ["/health_check"]`,
+		Use:   `users ["/users/question"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp4.Run(c, args) },
 	}
@@ -205,44 +212,44 @@ Payload example:
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
-		Use:   "list",
-		Short: `list action`,
+		Use:   "health",
+		Short: `Perform health check.`,
 	}
-	tmp5 := new(ListMessagesCommand)
+	tmp5 := new(HealthHealthCommand)
 	sub = &cobra.Command{
-		Use:   `messages ["/messages/me"]`,
+		Use:   `health ["/health_check"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp5.Run(c, args) },
 	}
 	tmp5.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp5.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
-	tmp6 := new(ListNewsCommand)
+	app.AddCommand(command)
+	command = &cobra.Command{
+		Use:   "list",
+		Short: `list action`,
+	}
+	tmp6 := new(ListMessagesCommand)
 	sub = &cobra.Command{
-		Use:   `news ["/news/"]`,
+		Use:   `messages ["/messages/me"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp6.Run(c, args) },
 	}
 	tmp6.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp6.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
-	tmp7 := new(ListSurveysCommand)
+	tmp7 := new(ListNewsCommand)
 	sub = &cobra.Command{
-		Use:   `surveys ["/surveys/"]`,
+		Use:   `news ["/news/"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp7.Run(c, args) },
 	}
 	tmp7.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp7.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
-	app.AddCommand(command)
-	command = &cobra.Command{
-		Use:   "read",
-		Short: `Mark message as red`,
-	}
-	tmp8 := new(ReadMessagesCommand)
+	tmp8 := new(ListSurveysCommand)
 	sub = &cobra.Command{
-		Use:   `messages ["/messages/me/ID"]`,
+		Use:   `surveys ["/surveys/"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp8.Run(c, args) },
 	}
@@ -251,10 +258,24 @@ Payload example:
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
+		Use:   "read",
+		Short: `Mark message as red`,
+	}
+	tmp9 := new(ReadMessagesCommand)
+	sub = &cobra.Command{
+		Use:   `messages ["/messages/me/ID"]`,
+		Short: ``,
+		RunE:  func(cmd *cobra.Command, args []string) error { return tmp9.Run(c, args) },
+	}
+	tmp9.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp9.PrettyPrint, "pp", false, "Pretty print response body")
+	command.AddCommand(sub)
+	app.AddCommand(command)
+	command = &cobra.Command{
 		Use:   "register",
 		Short: `Register a new user`,
 	}
-	tmp9 := new(RegisterUsersCommand)
+	tmp10 := new(RegisterUsersCommand)
 	sub = &cobra.Command{
 		Use:   `users ["/users/"]`,
 		Short: ``,
@@ -271,31 +292,31 @@ Payload example:
    "secret_question": "Ducimus et.",
    "user": "Voluptas non voluptatem et minus."
 }`,
-		RunE: func(cmd *cobra.Command, args []string) error { return tmp9.Run(c, args) },
-	}
-	tmp9.RegisterFlags(sub, c)
-	sub.PersistentFlags().BoolVar(&tmp9.PrettyPrint, "pp", false, "Pretty print response body")
-	command.AddCommand(sub)
-	app.AddCommand(command)
-	command = &cobra.Command{
-		Use:   "secure",
-		Short: `This action will test authentication`,
-	}
-	tmp10 := new(SecureAuthCommand)
-	sub = &cobra.Command{
-		Use:   `auth ["/auth/"]`,
-		Short: `This resource uses JWT to secure its endpoints`,
-		RunE:  func(cmd *cobra.Command, args []string) error { return tmp10.Run(c, args) },
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp10.Run(c, args) },
 	}
 	tmp10.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp10.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
+		Use:   "secure",
+		Short: `This action will test authentication`,
+	}
+	tmp11 := new(SecureAuthCommand)
+	sub = &cobra.Command{
+		Use:   `auth ["/auth/"]`,
+		Short: `This resource uses JWT to secure its endpoints`,
+		RunE:  func(cmd *cobra.Command, args []string) error { return tmp11.Run(c, args) },
+	}
+	tmp11.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp11.PrettyPrint, "pp", false, "Pretty print response body")
+	command.AddCommand(sub)
+	app.AddCommand(command)
+	command = &cobra.Command{
 		Use:   "signin",
 		Short: `Creates a valid JWT`,
 	}
-	tmp11 := new(SigninAuthCommand)
+	tmp12 := new(SigninAuthCommand)
 	sub = &cobra.Command{
 		Use:   `auth ["/auth/signin"]`,
 		Short: `This resource uses JWT to secure its endpoints`,
@@ -307,17 +328,17 @@ Payload example:
    "password": "Ipsa ipsam et veniam.",
    "username": "Aut nulla sit."
 }`,
-		RunE: func(cmd *cobra.Command, args []string) error { return tmp11.Run(c, args) },
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp12.Run(c, args) },
 	}
-	tmp11.RegisterFlags(sub, c)
-	sub.PersistentFlags().BoolVar(&tmp11.PrettyPrint, "pp", false, "Pretty print response body")
+	tmp12.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp12.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
 		Use:   "update",
 		Short: `Update user by authorization token`,
 	}
-	tmp12 := new(UpdateUsersCommand)
+	tmp13 := new(UpdateUsersCommand)
 	sub = &cobra.Command{
 		Use:   `users ["/users/me"]`,
 		Short: ``,
@@ -342,17 +363,17 @@ Payload example:
    "updated_at": "1996-02-29T07:34:48+09:00",
    "username": "Ut enim id doloremque similique."
 }`,
-		RunE: func(cmd *cobra.Command, args []string) error { return tmp12.Run(c, args) },
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp13.Run(c, args) },
 	}
-	tmp12.RegisterFlags(sub, c)
-	sub.PersistentFlags().BoolVar(&tmp12.PrettyPrint, "pp", false, "Pretty print response body")
+	tmp13.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp13.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
 		Use:   "updatepassword",
 		Short: `Set a new password`,
 	}
-	tmp13 := new(UpdatepasswordUsersCommand)
+	tmp14 := new(UpdatepasswordUsersCommand)
 	sub = &cobra.Command{
 		Use:   `users ["/users/me/password"]`,
 		Short: ``,
@@ -364,31 +385,31 @@ Payload example:
    "oldPassword": "Consectetur vitae et.",
    "password": "Recusandae ut voluptas."
 }`,
-		RunE: func(cmd *cobra.Command, args []string) error { return tmp13.Run(c, args) },
-	}
-	tmp13.RegisterFlags(sub, c)
-	sub.PersistentFlags().BoolVar(&tmp13.PrettyPrint, "pp", false, "Pretty print response body")
-	command.AddCommand(sub)
-	app.AddCommand(command)
-	command = &cobra.Command{
-		Use:   "view",
-		Short: `Get user by authorization token`,
-	}
-	tmp14 := new(ViewUsersCommand)
-	sub = &cobra.Command{
-		Use:   `users ["/users/me"]`,
-		Short: ``,
-		RunE:  func(cmd *cobra.Command, args []string) error { return tmp14.Run(c, args) },
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp14.Run(c, args) },
 	}
 	tmp14.RegisterFlags(sub, c)
 	sub.PersistentFlags().BoolVar(&tmp14.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 	command = &cobra.Command{
+		Use:   "view",
+		Short: `Get user by authorization token`,
+	}
+	tmp15 := new(ViewUsersCommand)
+	sub = &cobra.Command{
+		Use:   `users ["/users/me"]`,
+		Short: ``,
+		RunE:  func(cmd *cobra.Command, args []string) error { return tmp15.Run(c, args) },
+	}
+	tmp15.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp15.PrettyPrint, "pp", false, "Pretty print response body")
+	command.AddCommand(sub)
+	app.AddCommand(command)
+	command = &cobra.Command{
 		Use:   "vote",
 		Short: `Register an answer`,
 	}
-	tmp15 := new(VoteSurveysCommand)
+	tmp16 := new(VoteSurveysCommand)
 	sub = &cobra.Command{
 		Use:   `surveys ["/surveys/ID/results"]`,
 		Short: ``,
@@ -402,10 +423,10 @@ Payload example:
    "text": "Vitae quis est.",
    "weight": 1930164005099003329
 }`,
-		RunE: func(cmd *cobra.Command, args []string) error { return tmp15.Run(c, args) },
+		RunE: func(cmd *cobra.Command, args []string) error { return tmp16.Run(c, args) },
 	}
-	tmp15.RegisterFlags(sub, c)
-	sub.PersistentFlags().BoolVar(&tmp15.PrettyPrint, "pp", false, "Pretty print response body")
+	tmp16.RegisterFlags(sub, c)
+	sub.PersistentFlags().BoolVar(&tmp16.PrettyPrint, "pp", false, "Pretty print response body")
 	command.AddCommand(sub)
 	app.AddCommand(command)
 
@@ -917,6 +938,32 @@ func (cmd *ForgotpasswordUsersCommand) Run(c *client.Client, args []string) erro
 func (cmd *ForgotpasswordUsersCommand) RegisterFlags(cc *cobra.Command, c *client.Client) {
 	cc.Flags().StringVar(&cmd.Payload, "payload", "", "Request body encoded in JSON")
 	cc.Flags().StringVar(&cmd.ContentType, "content", "", "Request content type override, e.g. 'application/x-www-form-urlencoded'")
+}
+
+// Run makes the HTTP request corresponding to the GetquestionUsersCommand command.
+func (cmd *GetquestionUsersCommand) Run(c *client.Client, args []string) error {
+	var path string
+	if len(args) > 0 {
+		path = args[0]
+	} else {
+		path = "/users/question"
+	}
+	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
+	ctx := goa.WithLogger(context.Background(), logger)
+	resp, err := c.GetquestionUsers(ctx, path, stringFlagVal("username", cmd.Username))
+	if err != nil {
+		goa.LogError(ctx, "failed", "err", err)
+		return err
+	}
+
+	goaclient.HandleResponse(c.Client, resp, cmd.PrettyPrint)
+	return nil
+}
+
+// RegisterFlags registers the command flags with the command line.
+func (cmd *GetquestionUsersCommand) RegisterFlags(cc *cobra.Command, c *client.Client) {
+	var username string
+	cc.Flags().StringVar(&cmd.Username, "username", username, `Username`)
 }
 
 // Run makes the HTTP request corresponding to the RegisterUsersCommand command.

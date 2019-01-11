@@ -13,7 +13,7 @@ var _ = API("samclick", func() {
 		Methods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS") // Allow all origins to retrieve the Swagger JSON (CORS)
 		Credentials()
 		Headers("Content-Type", "Accept", "Origin", "Authorization")
-		Expose("Authorization")
+		Expose("Authorization", "Content-Type", "Origin")
 	})
 	Consumes("application/json")
 	Produces("application/json")

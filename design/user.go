@@ -60,6 +60,18 @@ var _ = Resource("users", func() {
 		Response(Unauthorized)
 	})
 
+	Action("getquestion", func() {
+		NoSecurity()
+		Description("Get security question")
+		Routing(GET("/question"))
+		Params(func() {
+			Param("username", String, "Username")
+		})
+		Response(OK, String)
+		Response(NotFound)
+		Response(Unauthorized)
+	})
+
 	Action("register", func() {
 		NoSecurity()
 		Description("Register a new user")

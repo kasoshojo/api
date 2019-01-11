@@ -158,6 +158,19 @@ func (c *UsersController) Forgotpassword(ctx *app.ForgotpasswordUsersContext) er
 	return nil
 }
 
+// Getquestion runs the getquestion action.
+func (c *UsersController) Getquestion(ctx *app.GetquestionUsersContext) error {
+	if ctx.Username == nil || len(*ctx.Username) < 3 {
+		return ctx.Unauthorized()
+	}
+
+	var user model.User
+	if err := c.db.Where("username = ?", *ctx.Username).First(&user).Error; err != nil {
+		return ctx.NotFound()
+	}
+	return ctx.OK(user.SecretQuestion)
+}
+
 // View runs the view action.
 func (c *UsersController) View(ctx *app.ViewUsersContext) error {
 	// UsersController_View: start_implement

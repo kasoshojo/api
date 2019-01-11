@@ -594,6 +594,49 @@ func (ctx *ForgotpasswordUsersContext) NotFound() error {
 	return nil
 }
 
+// GetquestionUsersContext provides the users getquestion action context.
+type GetquestionUsersContext struct {
+	context.Context
+	*goa.ResponseData
+	*goa.RequestData
+	Username *string
+}
+
+// NewGetquestionUsersContext parses the incoming request URL and body, performs validations and creates the
+// context used by the users controller getquestion action.
+func NewGetquestionUsersContext(ctx context.Context, r *http.Request, service *goa.Service) (*GetquestionUsersContext, error) {
+	var err error
+	resp := goa.ContextResponse(ctx)
+	resp.Service = service
+	req := goa.ContextRequest(ctx)
+	req.Request = r
+	rctx := GetquestionUsersContext{Context: ctx, ResponseData: resp, RequestData: req}
+	paramUsername := req.Params["username"]
+	if len(paramUsername) > 0 {
+		rawUsername := paramUsername[0]
+		rctx.Username = &rawUsername
+	}
+	return &rctx, err
+}
+
+// OK sends a HTTP response with status code 200.
+func (ctx *GetquestionUsersContext) OK(r string) error {
+	ctx.ResponseData.Header().Set("Content-Type", "application/vnd.goa.user+json")
+	return ctx.ResponseData.Service.Send(ctx.Context, 200, r)
+}
+
+// Unauthorized sends a HTTP response with status code 401.
+func (ctx *GetquestionUsersContext) Unauthorized() error {
+	ctx.ResponseData.WriteHeader(401)
+	return nil
+}
+
+// NotFound sends a HTTP response with status code 404.
+func (ctx *GetquestionUsersContext) NotFound() error {
+	ctx.ResponseData.WriteHeader(404)
+	return nil
+}
+
 // RegisterUsersContext provides the users register action context.
 type RegisterUsersContext struct {
 	context.Context
