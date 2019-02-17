@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware/security/jwt"
@@ -45,7 +47,7 @@ func (c *SurveysController) Vote(ctx *app.VoteSurveysContext) error {
 	var survey model.Survey
 	err := c.db.Joins("JOIN survey_questions ON survey_questions.survey_id = surveys.id").
 		Joins("JOIN survey_answers ON survey_answers.survey_question_id = survey_questions.id").
-		Where("survey_questions.id = ? AND survey_answers.id = ?", ctx.Payload.QuestionID, ctx.Payload.AnswerID).Find(&survey).Error
+		Where("survey_questions.id = ? AND survey_answers.id = ? AND surveys.end_date > ?", ctx.Payload.QuestionID, ctx.Payload.AnswerID, time.Now()).Find(&survey).Error
 	if err != nil {
 		return err
 	}

@@ -5,9 +5,10 @@ import (
 )
 
 type Survey struct {
-	ID     int
-	Type   int
-	Status *int
+	ID      int
+	Type    int
+	Status  *int
+	EndDate time.Time
 }
 
 func (Survey) TableName() string {
